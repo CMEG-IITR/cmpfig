@@ -1,0 +1,12 @@
+{
+  "model": "../MatDetect/checkpoints/epoch046",
+  "name": "dabdetr",
+  "epochs": 50,
+  "checkpoint": "./checkpoints_mydata/dabdetr/epoch007",
+  "precision": 0.7789,
+  "recall": 0.8927,
+  "f1": 0.8319,
+  "map50": 0.5144,
+  "map75": 0.5059,
+  "map50_95": 0.4701
+}

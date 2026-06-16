@@ -1,0 +1,68 @@
+# ── Model weights & checkpoints ──────────────────────────────────────────────
+*.pt
+*.pth
+*.safetensors
+checkpoints/
+checkpoints_mydata/
+outputs/
+outputs_proper/
+
+# ── YOLO / benchmark runs ─────────────────────────────────────────────────────
+runs/
+ModelBench/yolo*.pt
+
+# ── Archives ──────────────────────────────────────────────────────────────────
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.tar.bz2
+
+# ── Large dataset files ───────────────────────────────────────────────────────
+*_linked_dataset.csv
+linked_dataset.csv
+dataset_index.json
+*/_summary.json
+generated_subcaptions_*.zip
+balanced_subset.csv
+
+# ── Large main_data subdirectories ───────────────────────────────────────────
+*_prod_json/
+*_json/
+*_prod_crops/
+*_production_images/
+*_prod_contents/
+*_contents/
+generated_subcaptions_*/
+generated_subcaptions/
+splits/
+
+# ── MatDetect image/annotation data ──────────────────────────────────────────
+all_mydata/
+my_annotated_data/
+MatDetect/data/
+third_party/
+
+# ── Virtual environments ──────────────────────────────────────────────────────
+comdfig/
+rfdetr_env/
+*_env/
+venv/
+.venv/
+env/
+
+# ── Python cache ──────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# ── Jupyter ───────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+
+# ── OS / editor ───────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*.swo

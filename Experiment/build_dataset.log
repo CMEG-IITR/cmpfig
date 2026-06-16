@@ -1,0 +1,17 @@
+build_dataset.py  —  2026-05-24 01:42:35
+============================================================
+Total image files scanned  : 36617
+Skipped (bad filename)     : 0
+Processed rows             : 36617
+
+── Image → JSON linkage ──────────────────────────────────
+  Matched (image + panel)  :  33104  (90.4%)
+  No JSON file             :      3  (0.0%)
+  JSON found, panel missing:   3510  (9.6%)
+
+── Caption linkage (of total processed) ─────────────────
+  Has subcaption + summary :  33104  (90.4%)
+
+── Output ────────────────────────────────────────────────
+  CSV  : linked_dataset.csv
+  Log  : build_dataset.log

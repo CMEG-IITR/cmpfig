@@ -1,0 +1,40 @@
+build_dataset.py  —  2026-06-07 09:34:29
+============================================================
+Total image files scanned  : 193379
+Skipped (bad filename)     : 21
+Processed rows             : 193358
+
+── Image → JSON linkage ──────────────────────────────────
+  Matched (image + panel)  : 164366  (85.0%)
+  No JSON file             :      0  (0.0%)
+  JSON found, panel missing:  28992  (15.0%)
+
+── Caption linkage (of total processed) ─────────────────
+  Has subcaption + summary : 164366  (85.0%)
+
+── Output ────────────────────────────────────────────────
+  CSV  : ceramics_linked_dataset.csv
+  Log  : ceramics_build_dataset.log
+
+── Skipped filenames (bad pattern) ──────────────────────
+  ceramics_prod_img17627_common.jpg
+  ceramics_prod_img18683_common.jpg
+  ceramics_prod_img20447_common.jpg
+  ceramics_prod_img21422_common.jpg
+  ceramics_prod_img24414_common.jpg
+  ceramics_prod_img35743_common.jpg
+  ceramics_prod_img36737_common.jpg
+  ceramics_prod_img38109_common.jpg
+  ceramics_prod_img42610_common.jpg
+  ceramics_prod_img49525_common.jpg
+  ceramics_prod_img49973_common.jpg
+  ceramics_prod_img50054_common.jpg
+  ceramics_prod_img50335_common.jpg
+  ceramics_prod_img54272_common.jpg
+  ceramics_prod_img6235_common.jpg
+  ceramics_prod_img71108_common.jpg
+  ceramics_prod_img71749_common.jpg
+  ceramics_prod_img73954_common.jpg
+  ceramics_prod_img73960_common.jpg
+  ceramics_prod_img74526_common.jpg
+  ceramics_prod_img8144_common.jpg

@@ -1,0 +1,12 @@
+{
+  "model": "./checkpoints/yolos_ti/epoch047",
+  "name": "yolos_ti",
+  "epochs": 50,
+  "checkpoint": "./checkpoints_mydata/yolos_ti/epoch020",
+  "precision": 0.701,
+  "recall": 0.8242,
+  "f1": 0.7576,
+  "map50": 0.5185,
+  "map75": 0.5047,
+  "map50_95": 0.4552
+}

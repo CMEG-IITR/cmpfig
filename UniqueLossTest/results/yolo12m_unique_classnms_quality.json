@@ -1,0 +1,106 @@
+{
+  "name": "yolo12m_unique",
+  "weights": "/mnt/d/Subham/Compoun_img_01/ModelBench/runs/detect/runs_mydata/yolo12m_unique/weights/best.pt",
+  "conf": 0.55,
+  "iou_nms": 0.45,
+  "iou_match": 0.5,
+  "images": 281,
+  "tp": 1266,
+  "fp": 44,
+  "fn": 95,
+  "precision": 0.9664,
+  "recall": 0.9302,
+  "f1": 0.948,
+  "per_class": {
+    "A": {
+      "tp": 244,
+      "fp": 10,
+      "fn": 19
+    },
+    "B": {
+      "tp": 243,
+      "fp": 10,
+      "fn": 16
+    },
+    "C": {
+      "tp": 203,
+      "fp": 8,
+      "fn": 12
+    },
+    "D": {
+      "tp": 186,
+      "fp": 4,
+      "fn": 6
+    },
+    "E": {
+      "tp": 119,
+      "fp": 2,
+      "fn": 4
+    },
+    "F": {
+      "tp": 84,
+      "fp": 3,
+      "fn": 5
+    },
+    "G": {
+      "tp": 54,
+      "fp": 0,
+      "fn": 8
+    },
+    "H": {
+      "tp": 44,
+      "fp": 0,
+      "fn": 3
+    },
+    "I": {
+      "tp": 26,
+      "fp": 2,
+      "fn": 3
+    },
+    "J": {
+      "tp": 16,
+      "fp": 1,
+      "fn": 1
+    },
+    "K": {
+      "tp": 13,
+      "fp": 0,
+      "fn": 0
+    },
+    "L": {
+      "tp": 8,
+      "fp": 2,
+      "fn": 2
+    },
+    "M": {
+      "tp": 4,
+      "fp": 0,
+      "fn": 2
+    },
+    "N": {
+      "tp": 4,
+      "fp": 0,
+      "fn": 1
+    },
+    "O": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 1
+    },
+    "P": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1
+    },
+    "single": {
+      "tp": 16,
+      "fp": 0,
+      "fn": 5
+    },
+    "common": {
+      "tp": 0,
+      "fp": 2,
+      "fn": 6
+    }
+  }
+}

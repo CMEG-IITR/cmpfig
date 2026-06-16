@@ -1,0 +1,26 @@
+build_dataset.py  —  2026-06-07 14:17:30
+============================================================
+Total image files scanned  : 132851
+Skipped (bad filename)     : 7
+Processed rows             : 132844
+
+── Image → JSON linkage ──────────────────────────────────
+  Matched (image + panel)  : 103597  (78.0%)
+  No JSON file             :  11354  (8.5%)
+  JSON found, panel missing:  17893  (13.5%)
+
+── Caption linkage (of total processed) ─────────────────
+  Has subcaption + summary : 103597  (78.0%)
+
+── Output ────────────────────────────────────────────────
+  CSV  : composite_linked_dataset.csv
+  Log  : composite_build_dataset.log
+
+── Skipped filenames (bad pattern) ──────────────────────
+  composite_img11743_common.jpg
+  composite_img12287_common.jpg
+  composite_img13932_common.jpg
+  composite_img26025_common.jpg
+  composite_img34653_common.jpg
+  composite_img3490_common.jpg
+  composite_img48569_common.jpg

@@ -1,0 +1,23 @@
+build_dataset.py  —  2026-06-08 04:10:41
+============================================================
+Total image files scanned  : 41682
+Skipped (bad filename)     : 4
+Processed rows             : 41678
+
+── Image → JSON linkage ──────────────────────────────────
+  Matched (image + panel)  :  36249  (87.0%)
+  No JSON file             :      3  (0.0%)
+  JSON found, panel missing:   5426  (13.0%)
+
+── Caption linkage (of total processed) ─────────────────
+  Has subcaption + summary :  36249  (87.0%)
+
+── Output ────────────────────────────────────────────────
+  CSV  : alloy_linked_dataset.csv
+  Log  : alloy_build_dataset.log
+
+── Skipped filenames (bad pattern) ──────────────────────
+  img2002_common.jpg
+  img6415_common.jpg
+  img6416_common.jpg
+  img6421_common.jpg

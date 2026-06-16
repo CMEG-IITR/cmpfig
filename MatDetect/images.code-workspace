@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "images",
+			"path": "../FigEx/examples/images"
+		},
+		{
+			"name": "MatDetect",
+			"path": "."
+		}
+	],
+	"settings": {}
+}

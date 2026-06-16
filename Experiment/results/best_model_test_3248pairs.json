@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-05-26 03:21:02",
+  "checkpoint": "checkpoints/best_model",
+  "split": "test",
+  "num_pairs": 3248,
+  "encode_time_s": 24.11,
+  "task_1_1_image_to_caption": {
+    "R@1": 15.15,
+    "R@5": 33.9,
+    "R@10": 43.63,
+    "mean_rank": 112.71,
+    "median_rank": 16,
+    "pool_size": 3248
+  },
+  "task_1_2_caption_to_image": {
+    "R@1": 14.41,
+    "R@5": 32.94,
+    "R@10": 42.67,
+    "mean_rank": 109.05,
+    "median_rank": 16,
+    "pool_size": 3248
+  }
+}
