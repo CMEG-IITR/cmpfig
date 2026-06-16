@@ -97,9 +97,5 @@ This dataset is released under the [Creative Commons Attribution-NonCommercial 4
 If you use MatSciFig in your research, please cite:
 
 ```bibtex
-@dataset{matscifig2026,
-  title   = {MatSciFig: A Panel-Level Scientific Figure Dataset for Materials Science},
-  year    = {2026},
-  license = {CC-BY-NC-4.0}
-}
+
 ```
