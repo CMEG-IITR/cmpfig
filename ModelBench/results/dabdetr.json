@@ -1,6 +1,11 @@
 {
   "name": "dabdetr",
   "checkpoint": "../MatDetect/checkpoints/epoch046",
+  "map50": 0.5519,
+  "map75": 0.5382,
+  "map50_95": 0.4806,
+  "mean_P": 0.87,
+  "mean_R": 0.6245,
   "apr": 0.2754,
   "apc": 0.4538,
   "apf": 0.7286

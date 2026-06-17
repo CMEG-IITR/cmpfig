@@ -1,12 +1,12 @@
 {
   "name": "yolov9c",
   "checkpoint": "./runs/detect/runs/yolov9c/weights/best.pt",
-  "map50": 0.6395,
-  "map75": 0.6212,
-  "map50_95": 0.5804,
-  "mean_P": 0.7068,
-  "mean_R": 0.5907,
-  "apr": 0.4227,
-  "apc": 0.5441,
-  "apf": 0.796
+  "map50": 0.4487,
+  "map75": 0.4357,
+  "map50_95": 0.4118,
+  "mean_P": 0.6112,
+  "mean_R": 0.4666,
+  "apr": 0.1483,
+  "apc": 0.3904,
+  "apf": 0.7097
 }

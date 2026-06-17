@@ -63,12 +63,12 @@ def make_temp_yaml(val_dir: str) -> str:
     return tmp.name
 
 
-def eval_yolo(best_pt: str, val_dir: str, device: str):
-    """Returns (per_class_ap dict, full_metrics dict). full_metrics is None if not needed."""
+def eval_yolo(best_pt: str, val_dir: str, device: str, conf_thresh: float = 0.55):
+    """Returns (per_class_ap dict, full_metrics dict)."""
     from ultralytics import YOLO
     tmp_yaml = make_temp_yaml(val_dir)
     model    = YOLO(best_pt)
-    metrics  = model.val(data=tmp_yaml, device=device, verbose=False)
+    metrics  = model.val(data=tmp_yaml, device=device, conf=conf_thresh, verbose=False)
     os.remove(tmp_yaml)
     box = metrics.box
     per_cls = {
@@ -89,7 +89,17 @@ def eval_yolo(best_pt: str, val_dir: str, device: str):
 
 # ── HF per-class AP ────────────────────────────────────────────────────────────
 
-def eval_hf(ckpt: str, val_dir: str, device_str: str) -> dict[int, float]:
+def _box_iou(b1, b2):
+    xi1, yi1 = max(b1[0], b2[0]), max(b1[1], b2[1])
+    xi2, yi2 = min(b1[2], b2[2]), min(b1[3], b2[3])
+    inter = max(0, xi2 - xi1) * max(0, yi2 - yi1)
+    a1 = (b1[2]-b1[0]) * (b1[3]-b1[1])
+    a2 = (b2[2]-b2[0]) * (b2[3]-b2[1])
+    union = a1 + a2 - inter
+    return inter / union if union > 0 else 0.0
+
+
+def eval_hf(ckpt: str, val_dir: str, device_str: str, conf_thresh: float = 0.5, iou_match: float = 0.5):
     import torch
     from PIL import Image
     from tqdm import tqdm
@@ -112,6 +122,8 @@ def eval_hf(ckpt: str, val_dir: str, device_str: str) -> dict[int, float]:
     labels_dir = os.path.join(val_dir, "labels")
     stems = [os.path.splitext(f)[0] for f in sorted(os.listdir(images_dir))
              if os.path.splitext(f)[1].lower() in IMAGE_EXTS]
+
+    tp_total = fp_total = fn_total = 0
 
     with torch.no_grad():
         for stem in tqdm(stems, desc=f"Eval HF ({os.path.basename(ckpt)})", leave=False):
@@ -153,10 +165,50 @@ def eval_hf(ckpt: str, val_dir: str, device_str: str) -> dict[int, float]:
                 [{"boxes":  gt_boxes_t, "labels": gt_labels_t}],
             )
 
+            # ── P/R/F1: greedy IoU matching at conf_thresh ──────────────────
+            scores  = res["scores"].cpu().tolist()
+            labels  = res["labels"].cpu().tolist()
+            boxes   = res["boxes"].cpu().tolist()
+
+            # filter by confidence, sort descending
+            preds = sorted(
+                [(s, l, b) for s, l, b in zip(scores, labels, boxes) if s >= conf_thresh],
+                key=lambda x: -x[0]
+            )
+
+            matched_gt = set()
+            for score, pred_cls, pred_box in preds:
+                hit = False
+                for gi, (gt_cls, gt_box) in enumerate(zip(gt_labels, gt_boxes)):
+                    if gi in matched_gt:
+                        continue
+                    if gt_cls == pred_cls and _box_iou(pred_box, gt_box) >= iou_match:
+                        matched_gt.add(gi)
+                        hit = True
+                        break
+                if hit:
+                    tp_total += 1
+                else:
+                    fp_total += 1
+            fn_total += len(gt_boxes) - len(matched_gt)
+
     r = metric.compute()
     classes = r.get("classes", _t.tensor([])).tolist()
     aps     = r["map_per_class"].tolist()
-    return {int(c): float(v) for c, v in zip(classes, aps) if float(v) >= 0}
+    per_cls = {int(c): float(v) for c, v in zip(classes, aps) if float(v) >= 0}
+
+    precision = tp_total / (tp_total + fp_total) if (tp_total + fp_total) > 0 else 0.0
+    recall    = tp_total / (tp_total + fn_total) if (tp_total + fn_total) > 0 else 0.0
+    f1        = 2*precision*recall / (precision+recall) if (precision+recall) > 0 else 0.0
+
+    full = {
+        "map50":    round(float(r["map_50"]),  4),
+        "map75":    round(float(r["map_75"]),  4),
+        "map50_95": round(float(r["map"]),     4),
+        "mean_P":   round(precision, 4),
+        "mean_R":   round(recall,    4),
+    }
+    return per_cls, full
 
 
 # ── aggregate APr / APc / APf ──────────────────────────────────────────────────
@@ -178,6 +230,8 @@ def get_args():
                    help="Recompute even if APr/APc/APf already exist in the JSON")
     p.add_argument("--models",      default=None,
                    help="Comma-separated list of model names to process (e.g. yolo12m,yolov10m). Default: all.")
+    p.add_argument("--conf",        type=float, default=0.55, help="Confidence threshold for P/R/F1 (HF models)")
+    p.add_argument("--iou-match",   type=float, default=0.45, help="IoU threshold for GT matching (HF models)")
     return p.parse_args()
 
 
@@ -218,15 +272,20 @@ def main():
         try:
             ckpt = entry["model_id"]
             if entry["family"] == "yolo":
-                per_cls, full = eval_yolo(ckpt, args.val_dir, args.device)
+                per_cls, full = eval_yolo(ckpt, args.val_dir, args.device,
+                                          conf_thresh=args.conf)
             else:
-                per_cls = eval_hf(ckpt, args.val_dir, device_str)
-                full = {}
+                per_cls, full = eval_hf(ckpt, args.val_dir, device_str,
+                                        conf_thresh=args.conf,
+                                        iou_match=args.iou_match)
 
             if name in existing:
                 record = json.load(open(fpath))
             else:
-                record = {"name": name, "checkpoint": ckpt, **full}
+                record = {"name": name, "checkpoint": ckpt}
+
+            # always update full metrics (map50 etc.) in case they were missing
+            record.update(full)
 
             record["apr"] = agg(per_cls, rare)
             record["apc"] = agg(per_cls, common)

@@ -1,12 +1,12 @@
 {
   "name": "yolo12m",
   "checkpoint": "./runs/detect/runs/yolo12m/weights/best.pt",
-  "map50": 0.6621,
-  "map75": 0.6553,
-  "map50_95": 0.6178,
-  "mean_P": 0.8025,
-  "mean_R": 0.5832,
-  "apr": 0.5267,
-  "apc": 0.5555,
-  "apf": 0.8087
+  "map50": 0.5438,
+  "map75": 0.5385,
+  "map50_95": 0.5106,
+  "mean_P": 0.7353,
+  "mean_R": 0.5717,
+  "apr": 0.4673,
+  "apc": 0.4113,
+  "apf": 0.7127
 }
