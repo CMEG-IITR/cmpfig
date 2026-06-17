@@ -1,0 +1,42 @@
+name: rfdetr_env
+channels:
+  - defaults
+dependencies:
+  - python=3.12.13
+  - pip
+  - pip:
+      # PyTorch — CUDA 12.4
+      - torch==2.6.0+cu124
+      - torchvision==0.21.0+cu124
+      - torchaudio==2.6.0+cu124
+      --extra-index-url https://download.pytorch.org/whl/cu124
+
+      # Detection & vision
+      - ultralytics==8.4.52
+      - timm==1.0.27
+      - opencv-python==4.13.0.92
+      - pillow==12.2.0
+      - flash_attn==2.8.3.post1
+
+      # HuggingFace ecosystem
+      - transformers==5.8.0.dev0
+      - datasets==4.8.5
+      - huggingface_hub==1.15.0
+      - accelerate
+
+      # Retrieval
+      - faiss-gpu-cu12==1.14.1.post1
+      - einops==0.8.2
+
+      # ML utilities
+      - torchmetrics==1.9.0
+      - scikit-learn==1.8.0
+      - scipy==1.17.1
+
+      # Data & utilities
+      - numpy==2.3.5
+      - pandas==3.0.3
+      - matplotlib==3.10.9
+      - tqdm==4.67.3
+      - openai==2.38.0
+      - wandb
