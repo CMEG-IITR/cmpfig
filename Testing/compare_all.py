@@ -37,7 +37,7 @@ ID2LABEL[20] = "single"
 
 IMAGE_EXTS    = (".jpg", ".jpeg", ".png", ".tif", ".tiff", ".webp", ".bmp")
 YOLO_REGISTRY = "../ModelBench/runs/detect/runs_mydata"
-DABDETR_ROOT  = "../MatDetect/checkpoints_mydata"
+DABDETR_ROOT  = "../ModelBench/checkpoints_mydata/dabdetr"
 
 # Classes with enough samples to be meaningful (A–I = 0–8, single = 20)
 EVAL_CLASSES  = list(range(11)) + [20]
