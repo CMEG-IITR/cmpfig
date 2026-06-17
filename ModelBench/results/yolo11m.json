@@ -1,12 +1,11 @@
 {
-  "model": "yolo11m",
   "name": "yolo11m",
-  "map50": 0.634,
-  "map75": 0.6241,
-  "map50_95": 0.5891,
-  "precision": 0.8219,
-  "recall": 0.5781,
-  "f1": 0.6787,
+  "checkpoint": "./runs/detect/runs/yolo11m/weights/best.pt",
+  "map50": 0.6117,
+  "map75": 0.6044,
+  "map50_95": 0.5588,
+  "mean_P": 0.7733,
+  "mean_R": 0.5376,
   "apr": 0.4097,
   "apc": 0.5065,
   "apf": 0.7916

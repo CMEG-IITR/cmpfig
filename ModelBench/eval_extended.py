@@ -63,17 +63,28 @@ def make_temp_yaml(val_dir: str) -> str:
     return tmp.name
 
 
-def eval_yolo(best_pt: str, val_dir: str, device: str) -> dict[int, float]:
+def eval_yolo(best_pt: str, val_dir: str, device: str):
+    """Returns (per_class_ap dict, full_metrics dict). full_metrics is None if not needed."""
     from ultralytics import YOLO
     tmp_yaml = make_temp_yaml(val_dir)
     model    = YOLO(best_pt)
     metrics  = model.val(data=tmp_yaml, device=device, verbose=False)
     os.remove(tmp_yaml)
     box = metrics.box
-    return {
+    per_cls = {
         int(cls): float(ap)
         for cls, ap in zip(box.ap_class_index.tolist(), box.ap.tolist())
     }
+    info = model.info(verbose=False)
+    params_m = round(model.model.num_parameters() / 1e6, 2) if hasattr(model.model, "num_parameters") else None
+    full = {
+        "map50":    round(float(box.map50),  4),
+        "map75":    round(float(box.map75),  4),
+        "map50_95": round(float(box.map),    4),
+        "mean_P":   round(float(box.mp),     4),
+        "mean_R":   round(float(box.mr),     4),
+    }
+    return per_cls, full
 
 
 # ── HF per-class AP ────────────────────────────────────────────────────────────
@@ -165,6 +176,8 @@ def get_args():
     p.add_argument("--device",      default="0")
     p.add_argument("--force",       action="store_true",
                    help="Recompute even if APr/APc/APf already exist in the JSON")
+    p.add_argument("--models",      default=None,
+                   help="Comma-separated list of model names to process (e.g. yolo12m,yolov10m). Default: all.")
     return p.parse_args()
 
 
@@ -181,32 +194,39 @@ def main():
 
     device_str  = f"cuda:{args.device}"
 
-    result_files = sorted(
-        f for f in os.listdir(args.results_dir) if f.endswith(".json")
-    )
+    allowed = set(args.models.split(",")) if args.models else None
+    os.makedirs(args.results_dir, exist_ok=True)
 
-    for fname in result_files:
-        fpath = os.path.join(args.results_dir, fname)
-        with open(fpath) as f:
-            record = json.load(f)
+    from models_registry_mydata import MODELS_MYDATA
+    registry = {m["name"]: m for m in MODELS_MYDATA}
+    existing = {os.path.splitext(f)[0] for f in os.listdir(args.results_dir) if f.endswith(".json")}
 
-        name = record.get("name", os.path.splitext(fname)[0])
-        print(f"Processing: {name} ...", end=" ", flush=True)
-
-        # skip if already computed (unless --force)
-        if not args.force and all(k in record for k in ("apr", "apc", "apf")):
-            print("already done, use --force to recompute.")
+    for name, entry in registry.items():
+        if allowed and name not in allowed:
             continue
 
+        fpath = os.path.join(args.results_dir, f"{name}.json")
+
+        # skip if JSON exists and already has apr/apc/apf (unless --force)
+        if name in existing and not args.force:
+            record = json.load(open(fpath))
+            if all(k in record for k in ("apr", "apc", "apf")):
+                print(f"{name}: already done, use --force to recompute.")
+                continue
+
+        print(f"Processing: {name} ...", end=" ", flush=True)
         try:
-            # determine model type and get per-class AP
-            best_pt = os.path.join(args.runs_dir, name, "weights", "best.pt")
-            if os.path.exists(best_pt):
-                per_cls = eval_yolo(best_pt, args.val_dir, args.device)
+            ckpt = entry["model_id"]
+            if entry["family"] == "yolo":
+                per_cls, full = eval_yolo(ckpt, args.val_dir, args.device)
             else:
-                # HF model — use model_id from record as checkpoint path
-                ckpt = record.get("model", record.get("checkpoint", ""))
                 per_cls = eval_hf(ckpt, args.val_dir, device_str)
+                full = {}
+
+            if name in existing:
+                record = json.load(open(fpath))
+            else:
+                record = {"name": name, "checkpoint": ckpt, **full}
 
             record["apr"] = agg(per_cls, rare)
             record["apc"] = agg(per_cls, common)

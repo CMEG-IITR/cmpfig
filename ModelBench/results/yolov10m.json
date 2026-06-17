@@ -1,0 +1,12 @@
+{
+  "name": "yolov10m",
+  "checkpoint": "./runs/detect/runs/yolov10m/weights/best.pt",
+  "map50": 0.6201,
+  "map75": 0.609,
+  "map50_95": 0.565,
+  "mean_P": 0.7872,
+  "mean_R": 0.5372,
+  "apr": 0.3608,
+  "apc": 0.5383,
+  "apf": 0.812
+}
