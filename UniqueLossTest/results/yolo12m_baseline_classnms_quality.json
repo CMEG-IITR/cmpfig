@@ -1,6 +1,6 @@
 {
   "name": "yolo12m_baseline",
-  "weights": "/mnt/d/Subham/Compoun_img_01/ModelBench/runs/detect/runs_mydata/yolo12m/weights/best.pt",
+  "weights": "../ModelBench/runs/detect/runs_mydata/yolo12m/weights/best.pt",
   "conf": 0.55,
   "iou_nms": 0.45,
   "iou_match": 0.5,

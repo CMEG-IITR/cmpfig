@@ -149,6 +149,39 @@ def bootstrap_ci(values, n_boot=1000, ci=95):
     return float(np.mean(arr)), float(lo), float(hi)
 
 
+# ── frequency splits (APf / APc / APr) ───────────────────────────────────────
+# Thresholds match eval_extended.py:
+#   APf (frequent) : > 100 instances
+#   APc (common)   : 10–100 instances
+#   APr (rare)     : 1–10  instances
+def count_class_instances(labels_dir):
+    counts = defaultdict(int)
+    for fname in os.listdir(labels_dir):
+        if not fname.endswith(".txt"):
+            continue
+        with open(os.path.join(labels_dir, fname)) as f:
+            for line in f:
+                parts = line.strip().split()
+                if len(parts) >= 5:
+                    cls = int(parts[0])
+                    if cls < NUM_PANEL_CLASSES:
+                        counts[cls] += 1
+    return dict(counts)
+
+
+def frequency_splits(counts):
+    """Returns (frequent, common, rare) sorted class index lists."""
+    frequent, common, rare = [], [], []
+    for cls, n in counts.items():
+        if n > 100:
+            frequent.append(cls)
+        elif n >= 10:
+            common.append(cls)
+        else:
+            rare.append(cls)
+    return sorted(frequent), sorted(common), sorted(rare)
+
+
 # ── evaluate one model ────────────────────────────────────────────────────────
 def eval_model(model_info, test_samples, args, has_tm, MAP):
     tp_map   = defaultdict(int)
@@ -312,7 +345,8 @@ def eval_model(model_info, test_samples, args, has_tm, MAP):
 def save_results(out_dir, name, tp_map, fp_map, fn_map, conf_mat,
                  ap50_map, ap75_map, ap_map, r50, r75, r, has_tm, n_eval, ckpt,
                  infer_times_ms, per_img_p, per_img_r, per_img_f1,
-                 params_M, gflops, n_boot, active_classes=None):
+                 params_M, gflops, n_boot, active_classes=None,
+                 freq_splits=None):
     """active_classes: class indices to aggregate P/R/F1/mAP over.
        None = all classes (torchmetrics global mAP).
        Pass EVAL_CLASSES to restrict to A–I + single."""
@@ -368,10 +402,25 @@ def save_results(out_dir, name, tp_map, fp_map, fn_map, conf_mat,
         map75    = _subset(ap75_map)
         map50_95 = _subset(ap_map)
 
+    # APf / APc / APr — mean AP@50:95 per frequency bucket
+    def _subset_ap(ap_dict, cls_list):
+        vals = [ap_dict[c] for c in cls_list if c in ap_dict and ap_dict[c] >= 0]
+        return round(sum(vals) / len(vals), 4) if vals else -1
+
+    if freq_splits is not None:
+        freq_cls, common_cls, rare_cls = freq_splits
+        apf = _subset_ap(ap_map, freq_cls)
+        apc = _subset_ap(ap_map, common_cls)
+        eval_rare = [c for c in rare_cls if active_classes is None or c in active_classes]
+        apr = _subset_ap(ap_map, eval_rare)
+    else:
+        apf = apc = apr = -1
+
     record = {
         "model": name, "checkpoint": ckpt, "n_evaluated": n_eval,
         "mean_P":  round(mp,  4), "mean_R":  round(mr,  4), "mean_F1": round(mf1, 4),
         "map50":   map50, "map75": map75, "map50_95": map50_95,
+        "APf": apf, "APc": apc, "APr": apr,
         # 95% bootstrap CI (per-image)
         "P_ci95":  f"{p_mean:.4f} [{p_lo:.4f}, {p_hi:.4f}]",
         "R_ci95":  f"{r_mean:.4f} [{r_lo:.4f}, {r_hi:.4f}]",
@@ -471,6 +520,18 @@ def main():
     if args.max_samples:
         test_samples = test_samples[:args.max_samples]
 
+    val_labels_dir = os.path.join(
+        args.val_dir or os.path.join(os.path.dirname(args.test_dir), "val"),
+        "labels")
+    counts = count_class_instances(val_labels_dir)
+    freq_splits = frequency_splits(counts)
+    freq_cls, common_cls, rare_cls = freq_splits
+    lbl = lambda c: ID2LABEL.get(c, str(c))
+    print(f"Freq splits (from {val_labels_dir}):")
+    print(f"  APf frequent ({len(freq_cls)}):  {[lbl(c) for c in freq_cls]}")
+    print(f"  APc common   ({len(common_cls)}): {[lbl(c) for c in common_cls]}")
+    print(f"  APr rare     ({len(rare_cls)}):  {[lbl(c) for c in rare_cls]}")
+
     try:
         from torchmetrics.detection import MeanAveragePrecision as MAP
         has_tm = True
@@ -496,7 +557,8 @@ def main():
                 r50, r75, r, has_tm, n, model_info["ckpt"],
                 times, per_p, per_r, per_f1,
                 params_M, gflops, args.bootstrap,
-                active_classes=EVAL_CLASSES if args.eval_classes else None)
+                active_classes=EVAL_CLASSES if args.eval_classes else None,
+                freq_splits=freq_splits)
 
             summary_rows.append({
                 "model":        rec["model"],
@@ -515,6 +577,9 @@ def main():
                 "mAP@50":       rec["map50"],
                 "mAP@75":       rec["map75"],
                 "mAP@50:95":    rec["map50_95"],
+                "APf":          rec["APf"],
+                "APc":          rec["APc"],
+                "APr":          rec["APr"],
                 "total_TP":     rec["total_TP"],
                 "total_FP":     rec["total_FP"],
                 "total_FN":     rec["total_FN"],
@@ -532,6 +597,7 @@ def main():
                   "mean_P","mean_R","mean_F1",
                   "P_ci95","R_ci95","F1_ci95",
                   "mAP@50","mAP@75","mAP@50:95",
+                  "APf","APc","APr",
                   "total_TP","total_FP","total_FN"]
         with open(sp,"w",newline="") as f:
             w=csv.DictWriter(f,fieldnames=fields); w.writeheader(); w.writerows(summary_rows)

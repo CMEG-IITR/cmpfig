@@ -1,7 +1,7 @@
 
 ======================================================================
   Class-aware NMS Quality — Test Split (281 images, conf=0.55, iou_nms=0.45)
-  Classes: A–T + single  (12 classes with training examples)
+  Classes: A–K + single  (12 classes, same as Testing --eval-classes)
 ======================================================================
   Metric              YOLO12m Baseline  YOLO12m+UniqLoss       Delta (B-A)
   --------------------------------------------------------------------
