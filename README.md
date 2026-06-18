@@ -146,7 +146,7 @@ python compare.py
 
 ## 3. UniqueLossTest — Uniqueness Loss Ablation
 
-Evaluates what happens when **class-aware NMS** is applied: keep only the highest-confidence box per class, then check how many kept boxes are correct against GT.
+Evaluates what happens when **class-singleton suppression** is applied: keep only the highest-confidence box per class per image (regardless of spatial location), then check how many kept boxes are correct against GT.
 
 Shows that YOLO12m+UniqLoss is naturally calibrated (one prediction per class) while the baseline collapses under this constraint.
 
@@ -174,7 +174,7 @@ Results saved to `UniqueLossTest/results/`.
 python compare.py
 ```
 
-Prints a side-by-side table (baseline vs unique) and saves it to `results/comparison_classnms.txt`.
+Prints a side-by-side table (baseline vs unique) and saves it to `results/comparison_classnms.txt` (class-singleton suppression quality).
 
 ---
 

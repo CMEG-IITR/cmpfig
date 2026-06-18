@@ -384,7 +384,7 @@ def plot_dashboard(base, uniq, jb, ju, out_dir):
     ax.axvline(5, color="gray", lw=1, ls=":")
     ax.set_title("Train Class Loss"); ax.set_xlabel("Epoch"); ax.legend(fontsize=8)
 
-    # 5. P/R/F1 bar (class-aware NMS)
+    # 5. P/R/F1 bar (class-singleton suppression)
     ax = fig.add_subplot(gs[1, 1])
     metrics = ["Precision", "Recall", "F1"]
     bm = [jb["precision"], jb["recall"], jb["f1"]]
@@ -397,7 +397,7 @@ def plot_dashboard(base, uniq, jb, ju, out_dir):
         ax.text(i + 0.2, u + 0.005, f"{u*100:.1f}%", ha="center", va="bottom", fontsize=7, color=CLR_UNIQ)
     ax.set_xticks(x); ax.set_xticklabels(metrics)
     ax.set_ylim(0.7, 1.08)
-    ax.set_title("Class-Aware NMS: P / R / F1"); ax.legend(fontsize=8)
+    ax.set_title("Class-Singleton Suppression: P / R / F1"); ax.legend(fontsize=8)
 
     # 6. Per-class F1 gain
     ax = fig.add_subplot(gs[1, 2])
@@ -413,7 +413,7 @@ def plot_dashboard(base, uniq, jb, ju, out_dir):
     ax.set_ylabel("F1 Gain"); ax.set_title("Per-Class F1 Gain (+UniqLoss)")
 
     fig.suptitle(
-        "YOLO12m — Baseline vs Uniqueness Loss  |  Training & Class-Aware NMS Summary",
+        "YOLO12m — Baseline vs Uniqueness Loss  |  Training & Class-Singleton Suppression Summary",
         fontsize=14, fontweight="bold",
     )
     save(fig, "09_summary_dashboard.png", out_dir)
@@ -434,11 +434,11 @@ def get_args():
     )
     p.add_argument(
         "--json-base", default=JSON_BASE,
-        help="Path to baseline class-aware NMS JSON"
+        help="Path to baseline class-singleton suppression JSON"
     )
     p.add_argument(
         "--json-uniq", default=JSON_UNIQ,
-        help="Path to uniqueness class-aware NMS JSON"
+        help="Path to uniqueness class-singleton suppression JSON"
     )
     return p.parse_args()
 

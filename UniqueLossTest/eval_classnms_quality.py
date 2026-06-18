@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Evaluate class-aware NMS quality against ground-truth labels on the test split.
+Evaluate class-singleton suppression quality against ground-truth labels on the test split.
 
-For each image: after applying class-aware NMS (keep top-1 box per class),
-check how many kept boxes are actually correct (IoU >= 0.5 with GT).
+For each image: after applying class-singleton suppression (keep top-1 box per class,
+regardless of spatial location), check how many kept boxes are correct (IoU >= 0.5 with GT).
 
 Reports: TP, FP, FN, Precision, Recall per model.
 
@@ -37,8 +37,8 @@ def box_iou(box1, box2):
     return inter / union if union > 0 else 0.0
 
 
-def class_aware_nms(scores, labels):
-    """Return indices keeping only the highest-scoring box per class."""
+def class_singleton_suppression(scores, labels):
+    """Return indices keeping only the highest-scoring box per class (class-singleton suppression)."""
     best = {}
     for i, (s, c) in enumerate(zip(scores, labels)):
         c = int(c)
@@ -68,7 +68,7 @@ def load_gt(label_path: Path, img_w: int, img_h: int):
 
 
 def get_args():
-    p = argparse.ArgumentParser("Evaluate class-aware NMS quality against GT on test split")
+    p = argparse.ArgumentParser("Evaluate class-singleton suppression quality against GT on test split")
     p.add_argument("--weights",     required=True)
     p.add_argument("--name",        required=True)
     p.add_argument("--test-data",   default=None)
@@ -96,7 +96,7 @@ def main():
     label_dir = Path(str(img_dir).replace("/images", "/labels"))
 
     print(f"\n{'='*60}")
-    print(f"  Class-aware NMS quality: {args.name}")
+    print(f"  Class-singleton suppression quality: {args.name}")
     print(f"  Images : {img_dir}")
     print(f"  Labels : {label_dir}")
     print(f"{'='*60}\n")
@@ -128,8 +128,8 @@ def main():
         labels = result.boxes.cls.cpu().tolist()
         boxes  = result.boxes.xyxy.cpu().tolist()
 
-        # Apply class-aware NMS
-        keep = class_aware_nms(scores, labels)
+        # Apply class-singleton suppression (top-1 box per class per image)
+        keep = class_singleton_suppression(scores, labels)
         kept_boxes  = [boxes[i]  for i in keep]
         kept_labels = [int(labels[i]) for i in keep]
 
@@ -165,7 +165,7 @@ def main():
     print(f"  Model      : {args.name}")
     print(f"  Images     : {len(image_files)}")
     print(f"  TP         : {tp_total}")
-    print(f"  FP         : {fp_total}  (class-NMS kept wrong box)")
+    print(f"  FP         : {fp_total}  (singleton kept wrong box)")
     print(f"  FN         : {fn_total}  (missed GT boxes)")
     print(f"  Precision  : {precision:.4f}")
     print(f"  Recall     : {recall:.4f}")

@@ -7,7 +7,7 @@ RESULTS_DIR = "./results"
 NUM_LETTER_CLASSES = 20
 ID2LABEL = {i: chr(ord("A") + i) for i in range(NUM_LETTER_CLASSES)}
 ID2LABEL[20] = "single"
-# Same as Testing/compare_all.py --eval-classes: A–K (0–10) + single (20)
+# Same as Testing/compare_all.py --eval-classes: A-K (0-10) + single (20)
 EVAL_CLASSES = list(range(11)) + [20]
 VALID_LABELS = {ID2LABEL[i] for i in EVAL_CLASSES}
 
@@ -49,8 +49,8 @@ def main():
     sep = f"  {'-'*68}"
 
     p(f"\n{'='*70}")
-    p(f"  Class-aware NMS Quality — Test Split ({a['images']} images, conf={a['conf']}, iou_nms={a['iou_nms']})")
-    p(f"  Classes: A–K + single  ({len(VALID_LABELS)} classes, same as Testing --eval-classes)")
+    p(f"  Class-Singleton Suppression Quality — Test Split ({a['images']} images, conf={a['conf']}, iou_nms={a['iou_nms']})")
+    p(f"  Classes: A-K + single  ({len(VALID_LABELS)} classes, same as Testing --eval-classes)")
     p(f"{'='*70}")
     p(f"  {'Metric':<18}  {'YOLO12m Baseline':>{W}}  {'YOLO12m+UniqLoss':>{W}}  {'Delta (B-A)':>{W}}")
     p(sep)
