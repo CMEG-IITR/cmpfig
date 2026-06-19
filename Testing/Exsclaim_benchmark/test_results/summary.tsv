@@ -1,0 +1,2 @@
+mAP@50:95	mAP@50	mean_F1	mean_P	mean_R	params_M	gflops	infer_ms	fps	total_TP	total_FP	total_FN
+0.7152	0.7527	0.7194	0.8015	0.6587	56.84	0.00	77.75	12.86	663	167	292

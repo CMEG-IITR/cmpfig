@@ -1,6 +1,6 @@
 # Compound Figure Panel Detection
 
-End-to-end pipeline for detecting and labelling sub-panels (A, B, C, …) in compound scientific figures. Covers panel detection, multi-model benchmarking, a novel uniqueness loss, and cross-modal retrieval.
+End-to-end pipeline for detecting and labelling sub-panels (A, B, C, …) in compound scientific figures. Covers panel detection, multi-model benchmarking, and cross-modal retrieval.
 
 
 ---
@@ -11,7 +11,6 @@ End-to-end pipeline for detecting and labelling sub-panels (A, B, C, …) in com
 Compoun_img_01/
 ├── MatDetect/          # DAB-DETR panel detector — training, eval, inference
 ├── ModelBench/         # Multi-model benchmark (YOLO v8/9/10/11/12 + DAB-DETR)
-├── UniqueLossTest/     # Class-aware uniqueness loss ablation on YOLO12m
 ├── Testing/            # Unified test-split comparison across all models
 ├── retrieval/          # Cross-modal dual-encoder retrieval module
 └── main_data/          # Source data, panel cropping, multimodal dataset building
@@ -108,16 +107,6 @@ python benchmark_mydata.py --skip-done
 
 Results saved to `ModelBench/results_mydata/`. Requires `data_mydata.yaml` (already created).
 
-### Train YOLO12m with Uniqueness Loss
-
-Adds a per-image class penalty — stops the model from predicting the same panel label (e.g. "B") multiple times in one figure.
-
-```bash
-python trainers/train_yolo12m_unique.py
-python trainers/train_yolo12m_unique.py --epochs 100 --uloss-weight 0.1
-python trainers/train_yolo12m_unique.py --uloss-weight 0.05 --uloss-thresh 0.4 --warmup-epochs 5
-```
-
 ### Compute APr / APc / APf (rare / common / frequent class split)
 
 Patches existing result JSONs in-place with frequency-stratified AP metrics.
@@ -144,41 +133,7 @@ python compare.py
 
 ---
 
-## 3. UniqueLossTest — Uniqueness Loss Ablation
-
-Evaluates what happens when **class-singleton suppression** is applied: keep only the highest-confidence box per class per image (regardless of spatial location), then check how many kept boxes are correct against GT.
-
-Shows that YOLO12m+UniqLoss is naturally calibrated (one prediction per class) while the baseline collapses under this constraint.
-
-**Step 1 — Evaluate both models**
-```bash
-cd UniqueLossTest
-
-# baseline
-python eval_classnms_quality.py \
-    --weights ../ModelBench/runs/detect/runs_mydata/yolo12m/weights/best.pt \
-    --name yolo12m_baseline \
-    --conf 0.55 --iou 0.45
-
-# unique loss model
-python eval_classnms_quality.py \
-    --weights ../ModelBench/runs/detect/runs_mydata/yolo12m_unique/weights/best.pt \
-    --name yolo12m_unique \
-    --conf 0.55 --iou 0.45
-```
-
-Results saved to `UniqueLossTest/results/`.
-
-**Step 2 — Compare**
-```bash
-python compare.py
-```
-
-Prints a side-by-side table (baseline vs unique) and saves it to `results/comparison_classnms.txt` (class-singleton suppression quality).
-
----
-
-## 4. Testing — Full Test-Split Comparison
+## 3. Testing — Full Test-Split Comparison
 
 Runs all models on the held-out test split with a unified evaluation protocol (standard NMS, same conf/IoU for all).
 
@@ -200,7 +155,7 @@ Models compared: all YOLO variants from `ModelBench/runs/detect/runs_mydata/` + 
 
 ---
 
-## 5. main_data — Multimodal Dataset Building
+## 4. main_data — Multimodal Dataset Building
 
 Builds the multimodal image-caption dataset from raw compound figures across four material domains (alloy, ceramics, composite, nickel alloy).
 
@@ -245,7 +200,7 @@ Streams all crops + metadata to HuggingFace as Parquet shards. Columns: `image`,
 
 ---
 
-## 6. Retrieval — Cross-Modal Dual-Encoder
+## 5. Retrieval — Cross-Modal Dual-Encoder
 
 Dual-encoder architecture (vision + text) trained with InfoNCE loss for image↔caption retrieval at scale.
 
