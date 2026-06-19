@@ -19,7 +19,7 @@ def get_args():
     p.add_argument("--name",        required=True, help="Run name, used for results/<name>.json")
     p.add_argument("--data",        default="../ModelBench/data.yaml")
     p.add_argument("--epochs",      type=int,   default=50)
-    p.add_argument("--imgsz",       type=int,   default=640)
+    p.add_argument("--imgsz",       type=int,   default=1024)
     p.add_argument("--batch",       type=int,   default=16)
     p.add_argument("--workers",     type=int,   default=4)
     p.add_argument("--device",      default="0", help="GPU id or 'cpu'")

@@ -27,6 +27,8 @@ def get_args():
     p.add_argument("--skip-done",   action="store_true",
                    help="Skip models whose results JSON already exists")
     p.add_argument("--epochs",      type=int, default=50)
+    p.add_argument("--imgsz",       type=int, default=1024,
+                   help="Training image size (default: 1024)")
     p.add_argument("--batch-yolo",  type=int, default=16)
     p.add_argument("--batch-hf",    type=int, default=4)
     p.add_argument("--device",      default="0")
@@ -76,6 +78,7 @@ def main():
                 "--name",        m["name"],
                 "--data",        os.path.join(bench_dir, DATA_YAML),
                 "--epochs",      str(args.epochs),
+                "--imgsz",       str(args.imgsz),
                 "--batch",       str(args.batch_yolo),
                 "--device",      args.device,
                 "--results-dir", args.results_dir,

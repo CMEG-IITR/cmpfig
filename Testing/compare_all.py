@@ -216,7 +216,8 @@ def eval_model(model_info, test_samples, args, has_tm, MAP):
     for img_path, pil, _, _ in warmup_samples:
         try:
             if mtype == "yolo":
-                detector.predict(str(img_path), conf=args.conf, iou=args.iou, verbose=False)
+                detector.predict(str(img_path), conf=args.conf, iou=args.iou,
+                                 imgsz=args.imgsz, verbose=False)
             else:
                 enc = processor(images=pil, return_tensors="pt")
                 pv  = enc["pixel_values"].to(args.device)
@@ -236,7 +237,7 @@ def eval_model(model_info, test_samples, args, has_tm, MAP):
 
             if mtype == "yolo":
                 results = detector.predict(str(img_path),
-                    conf=args.conf, iou=args.iou, verbose=False)
+                    conf=args.conf, iou=args.iou, imgsz=args.imgsz, verbose=False)
                 det_boxes, det_scores, det_labels = [], [], []
                 for r in results:
                     if r.boxes is None: continue
@@ -409,9 +410,11 @@ def save_results(out_dir, name, tp_map, fp_map, fn_map, conf_mat,
 
     if freq_splits is not None:
         freq_cls, common_cls, rare_cls = freq_splits
-        apf = _subset_ap(ap_map, freq_cls)
-        apc = _subset_ap(ap_map, common_cls)
-        eval_rare = [c for c in rare_cls if active_classes is None or c in active_classes]
+        eval_freq   = [c for c in freq_cls   if active_classes is None or c in active_classes]
+        eval_common = [c for c in common_cls if active_classes is None or c in active_classes]
+        eval_rare   = [c for c in rare_cls   if active_classes is None or c in active_classes]
+        apf = _subset_ap(ap_map, eval_freq)
+        apc = _subset_ap(ap_map, eval_common)
         apr = _subset_ap(ap_map, eval_rare)
     else:
         apf = apc = apr = -1
@@ -456,6 +459,8 @@ def get_args():
     p.add_argument("--conf",        type=float, default=0.3)
     p.add_argument("--iou",         type=float, default=0.5)
     p.add_argument("--iou-match",   type=float, default=0.5)
+    p.add_argument("--imgsz",       type=int,   default=640,
+                   help="Inference image size for YOLO models (default: 640)")
     p.add_argument("--cuda-device", default="cuda:0")
     p.add_argument("--max-samples", type=int,   default=None)
     p.add_argument("--bootstrap",   type=int,   default=1000,
@@ -465,6 +470,8 @@ def get_args():
                         "(default: ../ModelBench/checkpoints_mydata/dabdetr)")
     p.add_argument("--skip-dabdetr",action="store_true")
     p.add_argument("--skip-yolo",   action="store_true")
+    p.add_argument("--yolo-registry", default=None,
+                   help="Override YOLO weights directory (default: ../ModelBench/runs/detect/runs_mydata)")
     p.add_argument("--eval-classes",action="store_true",
                    help="Restrict aggregate P/R/F1/mAP to A–K + single (EVAL_CLASSES). "
                         "per_class.csv always shows all classes.")
@@ -497,6 +504,9 @@ def main():
     os.makedirs(args.out_dir, exist_ok=True)
 
     models = []
+    if args.yolo_registry:
+        global YOLO_REGISTRY
+        YOLO_REGISTRY = args.yolo_registry
     if not args.skip_yolo:   models += find_yolo_models()
     if not args.skip_dabdetr:
         dabdetr_root = args.dabdetr_root or DABDETR_ROOT
@@ -520,14 +530,12 @@ def main():
     if args.max_samples:
         test_samples = test_samples[:args.max_samples]
 
-    val_labels_dir = os.path.join(
-        args.val_dir or os.path.join(os.path.dirname(args.test_dir), "val"),
-        "labels")
-    counts = count_class_instances(val_labels_dir)
+    test_labels_dir = os.path.join(args.test_dir, "labels")
+    counts = count_class_instances(test_labels_dir)
     freq_splits = frequency_splits(counts)
     freq_cls, common_cls, rare_cls = freq_splits
     lbl = lambda c: ID2LABEL.get(c, str(c))
-    print(f"Freq splits (from {val_labels_dir}):")
+    print(f"Freq splits (from {test_labels_dir}):")
     print(f"  APf frequent ({len(freq_cls)}):  {[lbl(c) for c in freq_cls]}")
     print(f"  APc common   ({len(common_cls)}): {[lbl(c) for c in common_cls]}")
     print(f"  APr rare     ({len(rare_cls)}):  {[lbl(c) for c in rare_cls]}")
@@ -543,7 +551,8 @@ def main():
         print(f"\n{'='*60}\n  {model_info['name']}\n{'='*60}")
 
         print("  Profiling params / GFLOPs...")
-        params_M, gflops = profile_model(model_info, args.device)
+        params_M, gflops = profile_model(model_info, args.device,
+                                         img_size=(args.imgsz, args.imgsz))
         print(f"  Params: {params_M:.2f}M   GFLOPs: {gflops:.2f}")
 
         try:
