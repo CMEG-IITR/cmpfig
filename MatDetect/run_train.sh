@@ -15,10 +15,10 @@ python train_old.py \
     --epochs        50 \
     --lr            1e-4 \
     --lr-backbone   1e-5 \
-    --batch-size    4 \
-    --grad-accum    4 \
+    --batch-size    8 \
+    --grad-accum    2 \
     --max-grad-norm 0.1 \
-    --patience      10 \
+    --patience      5 \
     --warmup-epochs 2 \
     --num-workers   2 \
     --cuda-device   "$DEVICE"

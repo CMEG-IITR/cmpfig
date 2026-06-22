@@ -456,11 +456,11 @@ def get_args():
     p.add_argument("--combine",     action="store_true",
                    help="Combine test + val splits for evaluation")
     p.add_argument("--out-dir",     default="./results_comparison")
-    p.add_argument("--conf",        type=float, default=0.3)
-    p.add_argument("--iou",         type=float, default=0.5)
+    p.add_argument("--conf",        type=float, default=0.55)
+    p.add_argument("--iou",         type=float, default=0.45)
     p.add_argument("--iou-match",   type=float, default=0.5)
-    p.add_argument("--imgsz",       type=int,   default=640,
-                   help="Inference image size for YOLO models (default: 640)")
+    p.add_argument("--imgsz",       type=int,   default=1024,
+                   help="Inference image size for YOLO models (default: 1024)")
     p.add_argument("--cuda-device", default="cuda:0")
     p.add_argument("--max-samples", type=int,   default=None)
     p.add_argument("--bootstrap",   type=int,   default=1000,
