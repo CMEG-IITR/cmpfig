@@ -35,6 +35,7 @@ def get_args():
     p.add_argument("--results-dir", default="./results_mydata")
     p.add_argument("--runs-dir",    default="./runs_mydata")
     p.add_argument("--ckpt-dir",    default="./checkpoints_mydata")
+    p.add_argument("--seed",        type=int, default=0)
     p.add_argument("--dry-run",     action="store_true")
     return p.parse_args()
 
@@ -83,6 +84,7 @@ def main():
                 "--device",      args.device,
                 "--results-dir", args.results_dir,
                 "--runs-dir",    args.runs_dir,
+                "--seed",        str(args.seed),
             ]
         else:
             cmd = [

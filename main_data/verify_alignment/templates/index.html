@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Panel Alignment Verification</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #0f1117; color: #e0e0e0; min-height: 100vh; }
+
+  .header {
+    background: #1a1d27; padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid #2a2d3a;
+  }
+  .header h1 { font-size: 1rem; font-weight: 600; color: #a0a8c0; letter-spacing: .04em; }
+  .header-right { display: flex; align-items: center; gap: 16px; }
+  .progress-wrap { display: flex; align-items: center; gap: 12px; }
+  .progress-bar { width: 200px; height: 6px; background: #2a2d3a; border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: #4f8ef7; border-radius: 3px; transition: width .3s; }
+  .progress-text { font-size: .82rem; color: #7a8099; }
+  .btn-revisit-hdr {
+    padding: 6px 14px; border-radius: 6px; border: 1px solid #2a2d3a;
+    background: #1a1d27; color: #7a8099; font-size: .8rem; cursor: pointer;
+    text-decoration: none;
+  }
+  .btn-revisit-hdr:hover { border-color: #4f8ef7; color: #4f8ef7; }
+
+  .container { max-width: 1000px; margin: 28px auto; padding: 0 20px; }
+
+  /* revisit banner */
+  .revisit-banner {
+    background: #1e2a3a; border: 1px solid #2a4a6a; border-radius: 8px;
+    padding: 10px 16px; margin-bottom: 18px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: .85rem; color: #7ab4ff;
+  }
+  .revisit-banner a { color: #4f8ef7; text-decoration: none; font-size: .82rem; }
+
+  .meta { margin-bottom: 18px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: .78rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; }
+  .badge-domain  { background: #1e3a5f; color: #7ab4ff; }
+  .badge-panel   { background: #2d1e5f; color: #b07aff; font-size: 1rem; padding: 4px 14px; }
+  .badge-subtype { background: #1e3a2a; color: #7aff9e; }
+  .img-id { font-size: .82rem; color: #555; }
+
+  .panel-box {
+    background: #1a1d27; border: 1px solid #2a2d3a; border-radius: 10px; overflow: hidden;
+  }
+  .panel-box img {
+    width: 100%; max-height: 480px; object-fit: contain;
+    background: #0d0f18; display: block;
+  }
+  .panel-label { padding: 10px 16px; font-size: .78rem; color: #555; border-top: 1px solid #2a2d3a; text-transform: uppercase; letter-spacing: .06em; }
+
+  .subcaption-box {
+    background: #1a1d27; border: 1px solid #2a2d3a; border-radius: 10px;
+    padding: 18px 20px; margin-top: 20px;
+  }
+  .subcaption-box h3 { font-size: .75rem; color: #555; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px; }
+  .subcaption-box p  { font-size: .97rem; line-height: 1.65; color: #ccd; }
+
+  .question { margin-top: 24px; text-align: center; font-size: .9rem; color: #7a8099; margin-bottom: 14px; }
+
+  /* current label indicator */
+  .current-label {
+    text-align: center; margin-bottom: 10px; font-size: .82rem; color: #7a8099;
+  }
+  .lbl-badge {
+    display: inline-block; padding: 2px 10px; border-radius: 4px; font-weight: 600; font-size: .8rem; text-transform: uppercase;
+  }
+  .lbl-aligned    { background: #1a6640; color: #7affb0; }
+  .lbl-misaligned { background: #66201a; color: #ffb07a; }
+  .lbl-uncertain  { background: #2a2d3a; color: #a0a8c0; }
+  .lbl-skip       { background: #2a2d3a; color: #666; }
+
+  .buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+  .btn { padding: 12px 32px; border: none; border-radius: 8px; font-size: .95rem; font-weight: 600; cursor: pointer; transition: opacity .15s, transform .1s; letter-spacing: .02em; }
+  .btn:hover  { opacity: .85; }
+  .btn:active { transform: scale(.97); }
+  .btn-aligned    { background: #1a6640; color: #7affb0; }
+  .btn-misaligned { background: #66201a; color: #ffb07a; }
+  .btn-uncertain  { background: #2a2d3a; color: #a0a8c0; }
+  .btn-skip       { background: transparent; border: 1px solid #2a2d3a; color: #555; font-size: .82rem; padding: 8px 20px; }
+  .kbd { display: inline-block; background: #2a2d3a; border-radius: 3px; padding: 1px 5px; font-size: .72rem; color: #888; margin-left: 6px; }
+
+  /* revisit list modal */
+  .overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.7); z-index:100; overflow-y:auto; }
+  .overlay.open { display:block; }
+  .modal { background:#1a1d27; border:1px solid #2a2d3a; border-radius:12px; max-width:700px; margin:40px auto; padding:24px; }
+  .modal h2 { font-size:1rem; margin-bottom:16px; color:#a0a8c0; }
+  .revisit-list { list-style:none; }
+  .revisit-list li { display:flex; align-items:center; gap:12px; padding:8px 0; border-bottom:1px solid #1e2230; }
+  .revisit-list li:last-child { border-bottom:none; }
+  .revisit-list a { color:#4f8ef7; font-size:.85rem; text-decoration:none; flex:1; }
+  .revisit-list a:hover { text-decoration:underline; }
+  .modal-close { float:right; background:none; border:none; color:#555; font-size:1.2rem; cursor:pointer; }
+
+  .done-screen { text-align:center; padding:80px 20px; }
+  .done-screen h2 { font-size:1.6rem; margin-bottom:12px; }
+  .done-screen p  { color:#7a8099; }
+</style>
+</head>
+<body>
+
+{% if done %}
+<div class="done-screen">
+  <h2>All {{ total }} samples annotated</h2>
+  <p>Results saved to <code>results.jsonl</code></p>
+  <p style="margin-top:10px"><a href="/stats" style="color:#4f8ef7">View stats →</a></p>
+</div>
+
+{% else %}
+<div class="header">
+  <h1>Panel Alignment Verification</h1>
+  <div class="header-right">
+    <div class="progress-wrap">
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: {{ (n_done / total * 100)|round(1) }}%"></div>
+      </div>
+      <span class="progress-text">{{ n_done }} / {{ total }}</span>
+    </div>
+    <a class="btn-revisit-hdr" onclick="openRevisit(); return false;" href="#">Revisit</a>
+  </div>
+</div>
+
+<div class="container">
+
+  {% if revisit %}
+  <div class="revisit-banner">
+    <span>Revisiting item {{ idx + 1 }} — change your label below</span>
+    <a href="/">← Back to queue</a>
+  </div>
+  {% endif %}
+
+  <div class="meta">
+    <span class="badge badge-panel">Panel {{ item.panel_suffix }}</span>
+    <span class="badge badge-domain">{{ item.domain }}</span>
+    <span class="img-id">{{ item.image_id }}</span>
+  </div>
+
+  <div class="panel-box">
+    <img src="/image/{{ item.image_filename }}" alt="Panel {{ item.panel_suffix }}">
+    <div class="panel-label">Crop — Panel {{ item.panel_suffix }}</div>
+  </div>
+
+  <div class="subcaption-box">
+    <h3>LLM subcaption for panel {{ item.panel_suffix }}</h3>
+    <p>{{ item.subcaption }}</p>
+  </div>
+
+  <div class="question">Does this crop match the subcaption for panel <strong>{{ item.panel_suffix }}</strong>?</div>
+
+  {% if current_label %}
+  <div class="current-label">
+    Current label: <span class="lbl-badge lbl-{{ current_label }}">{{ current_label }}</span>
+    &nbsp;— click below to change
+  </div>
+  {% endif %}
+
+  <div class="buttons">
+    <button class="btn btn-aligned"    onclick="annotate('aligned')">Aligned <span class="kbd">A</span></button>
+    <button class="btn btn-misaligned" onclick="annotate('misaligned')">Misaligned <span class="kbd">M</span></button>
+    <button class="btn btn-uncertain"  onclick="annotate('uncertain')">Uncertain <span class="kbd">U</span></button>
+    <button class="btn btn-skip"       onclick="skip()">Skip <span class="kbd">S</span></button>
+  </div>
+
+</div>
+
+<!-- Revisit overlay -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeRevisit()">✕</button>
+    <h2>Revisit annotated items</h2>
+    <ul class="revisit-list" id="revisit-list">
+      <li style="color:#555">Loading…</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+const FILENAME = {{ item.image_filename | tojson }};
+const IDX      = {{ idx }};
+const IS_REVISIT = {{ 'true' if revisit else 'false' }};
+
+async function post(url, body) {
+  await fetch(url, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body) });
+  if (IS_REVISIT) window.location.href = "/revisit/" + IDX;
+  else window.location.href = "/";
+}
+
+function annotate(label) { post("/annotate", { image_filename: FILENAME, label, revisit: IS_REVISIT }); }
+function skip()           { post("/skip",     { image_filename: FILENAME, revisit: IS_REVISIT }); }
+
+document.addEventListener("keydown", e => {
+  if (document.getElementById("overlay").classList.contains("open")) return;
+  if (e.key === "a" || e.key === "A") annotate("aligned");
+  if (e.key === "m" || e.key === "M") annotate("misaligned");
+  if (e.key === "u" || e.key === "U") annotate("uncertain");
+  if (e.key === "s" || e.key === "S") skip();
+});
+
+async function openRevisit() {
+  document.getElementById("overlay").classList.add("open");
+  const res  = await fetch("/stats");
+  const data = await res.json();
+  // fetch done list from hidden endpoint
+  const res2 = await fetch("/done_list");
+  const done = await res2.json();
+  const ul = document.getElementById("revisit-list");
+  if (!done.length) { ul.innerHTML = '<li style="color:#555">Nothing annotated yet.</li>'; return; }
+  ul.innerHTML = done.map(d =>
+    `<li>
+      <a href="/revisit/${d.idx}">
+        <strong>Panel ${d.panel_suffix}</strong> — ${d.image_id} (${d.domain})
+      </a>
+      <span class="lbl-badge lbl-${d.label}">${d.label}</span>
+    </li>`
+  ).join("");
+}
+
+function closeRevisit() {
+  document.getElementById("overlay").classList.remove("open");
+}
+document.getElementById("overlay").addEventListener("click", e => {
+  if (e.target === document.getElementById("overlay")) closeRevisit();
+});
+</script>
+{% endif %}
+
+</body>
+</html>

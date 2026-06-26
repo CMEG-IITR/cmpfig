@@ -25,6 +25,7 @@ def get_args():
     p.add_argument("--device",      default="0", help="GPU id or 'cpu'")
     p.add_argument("--results-dir", default="./results")
     p.add_argument("--runs-dir",    default="./runs")
+    p.add_argument("--seed",        type=int, default=0)
     return p.parse_args()
 
 
@@ -52,6 +53,7 @@ def main():
         device=args.device,
         project=args.runs_dir,
         name=args.name,
+        seed=args.seed,
         exist_ok=True,
         verbose=True,
     )

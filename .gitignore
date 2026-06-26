@@ -34,6 +34,7 @@ balanced_subset.csv
 generated_subcaptions_*/
 generated_subcaptions/
 splits/
+main_data/verify_alignment/data
 
 # ── MatDetect image/annotation data ──────────────────────────────────────────
 all_mydata/
