@@ -82,6 +82,7 @@ def main():
         args.repo,
         split="train",
         max_shard_size=args.shard_size,
+        private=True,
         commit_message="Add MatSciFig dataset",
     )
 
