@@ -37,7 +37,7 @@ splits/
 main_data/verify_alignment/data
 retrieval/outputs_proper
 retrieval/outputs_hardneg_20ep
-
+retrieval/outputs_proper
 # ── MatDetect image/annotation data ──────────────────────────────────────────
 all_mydata/
 my_annotated_data/
