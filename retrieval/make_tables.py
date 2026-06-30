@@ -226,7 +226,7 @@ def table2_latex(zs_cat, ft_cat):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--output_dir", default="/mnt/d/Subham/Compoun_img_01/retrieval/outputs_proper")
+    p.add_argument("--output_dir", default="/mnt/d/Subham/Compoun_img_01/retrieval/outputs_no_hardneg_20ep")
     args = p.parse_args()
 
     eval_dir = os.path.join(args.output_dir, "eval")

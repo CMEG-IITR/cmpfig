@@ -220,7 +220,7 @@ class HardNegativeBatchSampler(Sampler):
     ):
         self.data      = data
         self.batch_size = batch_size
-        self.n_hard    = max(1, round(batch_size * hard_neg_ratio))
+        self.n_hard    = round(batch_size * hard_neg_ratio)
         self.n_anchor  = batch_size - self.n_hard
         self.fallback_threshold = fallback_threshold
         self.drop_last = drop_last
@@ -242,7 +242,7 @@ class HardNegativeBatchSampler(Sampler):
         }
 
     def __len__(self) -> int:
-        return self.n // self.n_anchor
+        return self.n // self.batch_size
 
     def _sample_hard_neg(self, ai: int) -> int:
         item     = self.data[ai]
@@ -273,7 +273,7 @@ class HardNegativeBatchSampler(Sampler):
     def __iter__(self):
         perm = self.rng.permutation(self.n)
 
-        for start in range(0, self.n - self.n_anchor + 1, self.n_anchor):
+        for start in range(0, self.n - self.batch_size + 1, self.batch_size):
             anchor_idxs = perm[start : start + self.n_anchor].tolist()
 
             hard_idxs = [self._sample_hard_neg(ai) for ai in anchor_idxs][: self.n_hard]

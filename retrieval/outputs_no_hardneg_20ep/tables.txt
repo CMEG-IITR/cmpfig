@@ -1,0 +1,92 @@
+TABLE 1 — OVERALL (Markdown)
+| Metric     | Random     | ZS-CLIP i2t | ZS-CLIP t2i | **Ours i2t** | **Ours t2i** |
+|------------|-----------|-------------|-------------|-------------|-------------|
+| R@1        | 0.0%      | 2.4%        | 1.7%        | **11.2%**    | 9.1%        |
+| R@5        | 0.0%      | 5.7%        | 3.9%        | **30.1%**    | 27.1%       |
+| R@10       | 0.0%      | 7.8%        | 5.5%        | **40.5%**    | 38.1%       |
+| R@50       | 0.1%      | 14.8%       | 11.1%       | **63.2%**    | 62.1%       |
+| R@100      | 0.3%      | 19.3%       | 14.9%       | **71.3%**    | 70.1%       |
+| MRR        | 0.000     | 0.043       | 0.031       | **0.206**    | 0.182       |
+| mAP@100    | 0.000     | 0.043       | 0.030       | **0.205**    | 0.181       |
+| N          | 39,315    | 39,315      | 39,315      | 39,315      | 39,315      |
+
+TABLE 2 — PER-CATEGORY (Markdown)
+| Category                  |    n  | ZS i2t R@1 | ZS i2t R@10 | ZS t2i R@1 | ZS t2i R@10 | **Ours i2t R@1** | **Ours i2t R@10** | **Ours i2t MRR** | **Ours t2i R@1** | **Ours t2i R@10** | **Ours t2i MRR** |
+|---------------------------|------:|----------:|------------:|----------:|------------:|-----------------:|------------------:|-----------------:|-----------------:|------------------:|-----------------:|
+| Microscopy                | 10624 |       1.1% |        4.0% |       0.5% |        2.7% | **10.0%** | **36.8%** | **0.187** | **8.3%** | **34.5%** | **0.167** |
+| Generic Plot              |  7305 |       5.7% |       16.5% |       3.9% |       12.4% | **16.7%** | **52.1%** | **0.282** | **13.9%** | **49.1%** | **0.252** |
+| Schematic/Diagram         |  4205 |       6.7% |       19.2% |       4.1% |       11.8% | **14.2%** | **46.3%** | **0.244** | **11.0%** | **44.1%** | **0.215** |
+| Mechanical Test           |  3637 |       4.2% |       13.5% |       2.4% |        8.8% | **17.5%** | **53.3%** | **0.291** | **13.6%** | **48.5%** | **0.247** |
+| Diffraction               |  3090 |       1.5% |        6.8% |       1.2% |        5.3% | **12.0%** | **42.2%** | **0.218** | **9.5%** | **37.7%** | **0.188** |
+| Simulation                |  2844 |       4.0% |       14.1% |       2.8% |        8.9% | **16.4%** | **50.7%** | **0.278** | **13.9%** | **49.3%** | **0.250** |
+| Photograph                |  2321 |       6.2% |       18.6% |       4.0% |       14.3% | **14.8%** | **49.4%** | **0.256** | **12.4%** | **48.0%** | **0.236** |
+| Compositional Map         |  1405 |       1.6% |        5.4% |       0.7% |        4.4% | **15.5%** | **51.6%** | **0.270** | **12.8%** | **47.5%** | **0.236** |
+| Spectroscopy              |   849 |       3.7% |       15.9% |       3.5% |       13.3% | **16.8%** | **54.8%** | **0.294** | **12.7%** | **49.7%** | **0.244** |
+| Tomography/3D             |   736 |       5.2% |       14.9% |       4.1% |       13.7% | **19.0%** | **57.2%** | **0.314** | **15.1%** | **53.1%** | **0.267** |
+| Machine Learning          |   589 |      12.7% |       33.1% |       9.8% |       30.7% | **19.9%** | **57.4%** | **0.320** | **16.6%** | **50.3%** | **0.275** |
+| Electrochemistry          |   554 |       4.3% |       20.4% |       5.4% |       17.3% | **18.1%** | **55.6%** | **0.303** | **11.9%** | **46.4%** | **0.223** |
+| Thermal Analysis          |   398 |       6.3% |       20.1% |       5.3% |       16.1% | **17.8%** | **57.5%** | **0.312** | **14.8%** | **52.3%** | **0.262** |
+| Phase/Equilibrium Diagram |   260 |       8.1% |       30.0% |       6.2% |       22.3% | **23.1%** | **61.5%** | **0.359** | **18.8%** | **53.5%** | **0.302** |
+| Table                     |    50 |      30.0% |       66.0% |      18.0% |       46.0% | **nan%** | **nan%** | **nan** | **nan%** | **nan%** | **nan** |
+| Magnetic/Electronic       |   161 |      11.2% |       32.3% |       9.3% |       29.8% | **nan%** | **nan%** | **nan** | **nan%** | **nan%** | **nan** |
+| Crystal Structure         |   164 |      13.4% |       40.2% |      10.4% |       32.3% | **nan%** | **nan%** | **nan** | **nan%** | **nan%** | **nan** |
+| Optical/Photonic          |    97 |      15.5% |       56.7% |      12.4% |       48.5% | **nan%** | **nan%** | **nan** | **nan%** | **nan%** | **nan** |
+
+TABLE 1 — OVERALL (LaTeX)
+\begin{table}[t]
+\centering
+\caption{Overall cross-modal retrieval performance on 39{,}315 test panels. R@K values in \%. Best result per row in \textbf{bold}.}
+\label{tab:retrieval_overall}
+\begin{tabular}{lcccccc}
+\toprule
+Metric & Random & \multicolumn{2}{c}{Zero-shot CLIP} & \multicolumn{2}{c}{\textbf{Ours (Fine-tuned)}} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6}
+       &        & i{\to}t & t{\to}i & \textbf{i{\to}t} & t{\to}i \\
+\midrule
+R@1 & 0.0 & 2.4 & 1.7 & \textbf{11.2} & 9.1 \\
+R@5 & 0.0 & 5.7 & 3.9 & \textbf{30.1} & 27.1 \\
+R@10 & 0.0 & 7.8 & 5.5 & \textbf{40.5} & 38.1 \\
+R@50 & 0.1 & 14.8 & 11.1 & \textbf{63.2} & 62.1 \\
+R@100 & 0.3 & 19.3 & 14.9 & \textbf{71.3} & 70.1 \\
+MRR & 0.000 & 0.043 & 0.031 & \textbf{0.206} & 0.182 \\
+R@100 & 0.000 & 0.043 & 0.030 & \textbf{0.205} & 0.181 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+TABLE 2 — PER-CATEGORY (LaTeX)
+\begin{table*}[t]
+\centering
+\caption{Per-category retrieval performance for both directions (i{\to}t: image queries text; t{\to}i: text queries image). R@K values in \%. Categories sorted by test-set size.}
+\label{tab:retrieval_category}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lrccccccccccc}
+\toprule
+& & \multicolumn{4}{c}{Zero-shot CLIP} & \multicolumn{6}{c}{\textbf{Ours (Fine-tuned)}} \\
+\cmidrule(lr){3-6} \cmidrule(lr){7-12}
+& & \multicolumn{2}{c}{i{\to}t} & \multicolumn{2}{c}{t{\to}i} & \multicolumn{3}{c}{\textbf{i{\to}t}} & \multicolumn{3}{c}{\textbf{t{\to}i}} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-9} \cmidrule(lr){10-12}
+Category & $n$ & R@1 & R@10 & R@1 & R@10 & \textbf{R@1} & \textbf{R@10} & \textbf{MRR} & \textbf{R@1} & \textbf{R@10} & \textbf{MRR} \\
+\midrule
+Microscopy & 10,624 & 1.1 & 4.0 & 0.5 & 2.7 & \textbf{10.0} & \textbf{36.8} & \textbf{0.187} & \textbf{8.3} & \textbf{34.5} & \textbf{0.167} \\
+Generic Plot & 7,305 & 5.7 & 16.5 & 3.9 & 12.4 & \textbf{16.7} & \textbf{52.1} & \textbf{0.282} & \textbf{13.9} & \textbf{49.1} & \textbf{0.252} \\
+Schematic/Diagram & 4,205 & 6.7 & 19.2 & 4.1 & 11.8 & \textbf{14.2} & \textbf{46.3} & \textbf{0.244} & \textbf{11.0} & \textbf{44.1} & \textbf{0.215} \\
+Mechanical Test & 3,637 & 4.2 & 13.5 & 2.4 & 8.8 & \textbf{17.5} & \textbf{53.3} & \textbf{0.291} & \textbf{13.6} & \textbf{48.5} & \textbf{0.247} \\
+Diffraction & 3,090 & 1.5 & 6.8 & 1.2 & 5.3 & \textbf{12.0} & \textbf{42.2} & \textbf{0.218} & \textbf{9.5} & \textbf{37.7} & \textbf{0.188} \\
+Simulation & 2,844 & 4.0 & 14.1 & 2.8 & 8.9 & \textbf{16.4} & \textbf{50.7} & \textbf{0.278} & \textbf{13.9} & \textbf{49.3} & \textbf{0.250} \\
+Photograph & 2,321 & 6.2 & 18.6 & 4.0 & 14.3 & \textbf{14.8} & \textbf{49.4} & \textbf{0.256} & \textbf{12.4} & \textbf{48.0} & \textbf{0.236} \\
+Compositional Map & 1,405 & 1.6 & 5.4 & 0.7 & 4.4 & \textbf{15.5} & \textbf{51.6} & \textbf{0.270} & \textbf{12.8} & \textbf{47.5} & \textbf{0.236} \\
+Spectroscopy & 849 & 3.7 & 15.9 & 3.5 & 13.3 & \textbf{16.8} & \textbf{54.8} & \textbf{0.294} & \textbf{12.7} & \textbf{49.7} & \textbf{0.244} \\
+Tomography/3D & 736 & 5.2 & 14.9 & 4.1 & 13.7 & \textbf{19.0} & \textbf{57.2} & \textbf{0.314} & \textbf{15.1} & \textbf{53.1} & \textbf{0.267} \\
+Machine Learning & 589 & 12.7 & 33.1 & 9.8 & 30.7 & \textbf{19.9} & \textbf{57.4} & \textbf{0.320} & \textbf{16.6} & \textbf{50.3} & \textbf{0.275} \\
+Electrochemistry & 554 & 4.3 & 20.4 & 5.4 & 17.3 & \textbf{18.1} & \textbf{55.6} & \textbf{0.303} & \textbf{11.9} & \textbf{46.4} & \textbf{0.223} \\
+Thermal Analysis & 398 & 6.3 & 20.1 & 5.3 & 16.1 & \textbf{17.8} & \textbf{57.5} & \textbf{0.312} & \textbf{14.8} & \textbf{52.3} & \textbf{0.262} \\
+Phase/Equilibrium Diagram & 260 & 8.1 & 30.0 & 6.2 & 22.3 & \textbf{23.1} & \textbf{61.5} & \textbf{0.359} & \textbf{18.8} & \textbf{53.5} & \textbf{0.302} \\
+Table & 50 & 30.0 & 66.0 & 18.0 & 46.0 & \textbf{nan} & \textbf{nan} & \textbf{nan} & \textbf{nan} & \textbf{nan} & \textbf{nan} \\
+Magnetic/Electronic & 161 & 11.2 & 32.3 & 9.3 & 29.8 & \textbf{nan} & \textbf{nan} & \textbf{nan} & \textbf{nan} & \textbf{nan} & \textbf{nan} \\
+Crystal Structure & 164 & 13.4 & 40.2 & 10.4 & 32.3 & \textbf{nan} & \textbf{nan} & \textbf{nan} & \textbf{nan} & \textbf{nan} & \textbf{nan} \\
+Optical/Photonic & 97 & 15.5 & 56.7 & 12.4 & 48.5 & \textbf{nan} & \textbf{nan} & \textbf{nan} & \textbf{nan} & \textbf{nan} & \textbf{nan} \\
+\bottomrule
+\end{tabular}
+}
+\end{table*}
