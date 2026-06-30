@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Caption Benchmark — {{ row.image_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <h1>Caption Benchmark</h1>
+        <p>{{ row.image_name }} · {{ index + 1 }} / {{ total }}</p>
+      </div>
+      <div class="top-actions">
+        <a href="{{ url_for('progress') }}">Progress</a>
+        <button type="button" id="flag-button"
+          class="flag-button{{ ' is-flagged' if flagged }}"
+          aria-pressed="{{ 'true' if flagged else 'false' }}">
+          {{ '⚑ Flagged' if flagged else '⚐ Flag' }}
+        </button>
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle dark theme">Dark</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="source">
+        <img src="{{ url_for('image', image_name=row.image_name) }}" alt="{{ row.image_name }}">
+        <section>
+          <h2>Original Caption</h2>
+          <p>{{ row.caption }}</p>
+        </section>
+        <section>
+          <h2>Reference Sentences</h2>
+          <p>{{ row.reference }}</p>
+        </section>
+      </aside>
+      <section class="workspace">
+        {% block content %}{% endblock %}
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="pager">
+        {% if prev_index is not none %}
+          <a href="{{ url_for('review_page', index=prev_index) }}" data-nav="prev">← Prev</a>
+        {% else %}
+          <span>← Prev</span>
+        {% endif %}
+        {% if next_index is not none %}
+          <a href="{{ url_for('review_page', index=next_index) }}" data-nav="next">Next →</a>
+        {% else %}
+          <span>Next →</span>
+        {% endif %}
+      </div>
+      <div class="footer-mid">
+        <button type="button" id="save-button" class="save-btn">Save</button>
+        <span id="save-status" class="save-status"></span>
+      </div>
+      <div class="key-hints">[ ] nav &nbsp;·&nbsp; t/f cat &nbsp;·&nbsp; 1/2/3 quality &nbsp;·&nbsp; g flag</div>
+    </footer>
+
+    <script>
+      window.BENCHMARK = {
+        imageName: {{ row.image_name|tojson }},
+        saveCategoryUrl: {{ url_for('save_category')|tojson }},
+        saveSummaryUrl: {{ url_for('save_summary')|tojson }},
+        saveFlagUrl: {{ url_for('save_flag')|tojson }},
+        flagged: {{ flagged|tojson }},
+        nextUrl: {{ next_url|tojson }},
+        prevUrl: {{ prev_url|tojson }},
+      };
+    </script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>

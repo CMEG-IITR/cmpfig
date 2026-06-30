@@ -1,0 +1,78 @@
+
+============================================================
+1. DETECTION → ANNOTATION JOIN EVALUATION
+============================================================
+
+Domain         Scanned   Matched  Match%  No JSON  PanelMiss
+------------------------------------------------------------
+alloy           41,682    36,249   87.0%        3      5,426
+ceramics       193,379   164,366   85.0%        0     28,992
+composite      132,851   103,597   78.0%   11,354     17,893
+ni_alloy       101,184    87,394   86.4%    1,353     12,434
+------------------------------------------------------------
+TOTAL          469,096   391,606   83.5%   12,710     64,745
+
+Summary:
+  Detected panels processed : 469,061
+  Successfully joined       : 391,606  (83.5%)
+  Unmatched — no LLM JSON   : 12,710  (2.7%)
+  Unmatched — panel key miss: 64,745  (13.8%)
+  Total unmatched (excluded): 77,455  (16.5%)
+  Common-label panels skipped (bad filename): 35
+
+Join mechanism:
+  Crop filename letter  (e.g. imgXXXX_B.jpg → key "b")
+  matched case-insensitively to LLM JSON panel key.
+  Single-panel figures use key "main".
+  Fallback: none — unmatched panels are excluded from the dataset.
+
+
+============================================================
+2. OUT-OF-TAXONOMY SUBTYPE RATE
+============================================================
+
+  Total panels in index : 391,606
+  Out-of-taxonomy       : 5,633  (1.44%)
+  Unique invalid values : 53
+
+  Top out-of-taxonomy subtypes:
+     5381  Generic Plot
+       35  MD Result
+       31  Table
+       23  Pie Chart
+       15  Infrared Thermography
+       14  Mott-Schottky Plot
+       14  Other
+       11  X-ray imaging
+        8  Ultrasonic wave propagation image
+        6  Western blot
+        6  Photograph
+        5  Geological Map
+        5  PCA Plot
+        4  Infrared Thermal Image
+        4  X-ray
+
+  Note:
+    visualization_category is schema-enforced (JSON enum) → always valid.
+    visualization_subtype  is prompt-guided only           → 1.44% out-of-taxonomy.
+    These panels are retained but routed to training only
+    via the rare-subtype threshold (< 10 panels per subtype).
+
+
+============================================================
+3. INTER-ANNOTATOR AGREEMENT (Cohen's κ)
+============================================================
+
+  Images annotated by both  : 102
+  Agreed (exact label set)  : 95
+  Disagreed                 : 7
+  Observed agreement (Po)   : 0.9314
+  Cohen's κ                 : 0.9245
+  Interpretation            : Almost Perfect
+
+  Unit: per-image exact match of the complete panel label set.
+
+
+============================================================
+DONE
+============================================================

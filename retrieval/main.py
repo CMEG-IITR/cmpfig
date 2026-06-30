@@ -179,7 +179,12 @@ def main():
     )
 
     # ── DataLoaders ─────────────────────────────────────────────────────────
-    _, val_loader, test_loader = build_dataloaders(config, train_data, val_data, test_data)
+    # Build epoch-0 train_loader first so its __len__ (from HardNegativeBatchSampler)
+    # gives the true steps_per_epoch — len(train_data)//batch_size undercounts by 2×
+    # because the sampler iterates over anchors (batch_size//2), not full batches.
+    train_loader, val_loader, test_loader = build_dataloaders(
+        config, train_data, val_data, test_data, epoch_seed=0
+    )
 
     ckpt_dir = os.path.join(config.output_dir, "checkpoints")
     eval_dir = os.path.join(config.output_dir, "eval")
@@ -202,7 +207,7 @@ def main():
         return
 
     # ── Optimiser ───────────────────────────────────────────────────────────
-    steps_per_epoch = len(train_data) // config.batch_size
+    steps_per_epoch = len(train_loader)
     total_steps     = (steps_per_epoch * config.num_epochs) // config.grad_accum_steps
 
     optimizer, scheduler = build_optimiser_and_scheduler(model, config, total_steps)
@@ -220,9 +225,10 @@ def main():
     # ── Training loop ────────────────────────────────────────────────────────
     log.info(f"Training for {config.num_epochs} epochs (~{total_steps} total steps)")
     for epoch in range(start_epoch, config.num_epochs):
-        train_loader, _, _ = build_dataloaders(
-            config, train_data, val_data, test_data, epoch_seed=epoch
-        )
+        if epoch > 0:
+            train_loader, _, _ = build_dataloaders(
+                config, train_data, val_data, test_data, epoch_seed=epoch
+            )
 
         epoch_stats = train_one_epoch(
             model=model,

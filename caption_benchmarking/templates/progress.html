@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Benchmark Progress</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <h1>Progress</h1>
+      <p>{{ n_complete }} / {{ total }} complete &nbsp;·&nbsp; {{ n_partial }} in progress</p>
+    </div>
+    <div class="top-actions">
+      <a href="{{ url_for('review_page', index=0) }}">← Review</a>
+      <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle dark theme">Dark</button>
+    </div>
+  </header>
+
+  <main class="progress-main">
+    <div class="progress-bar-wrap">
+      <div class="progress-bar" style="width: {{ (n_complete / total * 100)|round(1) }}%"></div>
+    </div>
+
+    <div class="progress-legend">
+      <span class="leg-item"><span class="leg-dot leg-complete"></span>Complete</span>
+      <span class="leg-item"><span class="leg-dot leg-partial"></span>In progress</span>
+      <span class="leg-item"><span class="leg-dot leg-empty"></span>Not started</span>
+      <span class="leg-item"><span class="leg-dot leg-flagged"></span>Flagged</span>
+    </div>
+
+    <div class="progress-grid">
+      {% for item in items %}
+      <a href="{{ url_for('review_page', index=item.index) }}"
+         class="pg-cell pg-{{ item.status }}{{ ' pg-flagged' if item.flagged }}"
+         title="{{ item.image_name }}">{{ item.index + 1 }}</a>
+      {% endfor %}
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      const key = "caption-benchmark-theme";
+      const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      const t = localStorage.getItem(key) || preferred;
+      document.documentElement.dataset.theme = t;
+      const btn = document.getElementById("theme-toggle");
+      btn.textContent = t === "dark" ? "Light" : "Dark";
+      btn.addEventListener("click", () => {
+        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem(key, next);
+        btn.textContent = next === "dark" ? "Light" : "Dark";
+      });
+    })();
+  </script>
+</body>
+</html>

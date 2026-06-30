@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="panel-header">
+    <h2>Subcaption Summary Benchmarking</h2>
+    <button type="button" id="save-button">Save</button>
+  </div>
+
+  <div class="model-list" data-form-kind="summary">
+    {% for output in outputs %}
+      <article class="model-card">
+        <h3>{{ output.model_label }}</h3>
+        {% if output.available and output.panels %}
+          {% for panel in output.panels %}
+            {% set panel_key = panel.panel|string %}
+            {% set subcaption_saved = saved.get('summary_benchmark', {}).get(output.model, {}).get(panel_key, {}).get('subcaption_quality', '') %}
+            {% set summary_saved = saved.get('summary_benchmark', {}).get(output.model, {}).get(panel_key, {}).get('summary_quality', '') %}
+            <div class="panel-row summary-row" data-model="{{ output.model }}" data-panel="{{ panel_key }}">
+              <div class="panel-copy">
+                <strong>Panel {{ panel.panel }}</strong>
+                <dl>
+                  <dt>Subcaption</dt>
+                  <dd>{{ panel.subcaption }}</dd>
+                  <dt>Summary</dt>
+                  <dd>{{ panel.summary }}</dd>
+                </dl>
+              </div>
+              <fieldset>
+                <legend>Subcaption</legend>
+                {% for value in ['poor', 'average', 'good'] %}
+                  <label><input type="radio" name="{{ output.model }}-{{ panel_key }}-subcaption" data-field="subcaption_quality" value="{{ value }}" {{ 'checked' if subcaption_saved == value }}> {{ value.title() }}</label>
+                {% endfor %}
+              </fieldset>
+              <fieldset>
+                <legend>Summary</legend>
+                {% for value in ['poor', 'average', 'good'] %}
+                  <label><input type="radio" name="{{ output.model }}-{{ panel_key }}-summary" data-field="summary_quality" value="{{ value }}" {{ 'checked' if summary_saved == value }}> {{ value.title() }}</label>
+                {% endfor %}
+              </fieldset>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p class="missing">No generated output found for this image.</p>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </div>
+{% endblock %}
