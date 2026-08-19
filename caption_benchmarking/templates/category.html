@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="panel-header">
+    <h2>Visualization Category Benchmarking</h2>
+    <button type="button" id="save-button">Save</button>
+  </div>
+
+  <div class="model-list" data-form-kind="category">
+    {% for output in outputs %}
+      <article class="model-card">
+        <h3>{{ output.model_label }}</h3>
+        {% if output.available and output.panels %}
+          {% for panel in output.panels %}
+            {% set panel_key = panel.panel|string %}
+            {% set category_saved = saved.get('category_benchmark', {}).get(output.model, {}).get(panel_key, {}).get('category_correct', '') %}
+            {% set subtype_saved = saved.get('category_benchmark', {}).get(output.model, {}).get(panel_key, {}).get('subtype_correct', '') %}
+            <div class="panel-row" data-model="{{ output.model }}" data-panel="{{ panel_key }}">
+              <div class="panel-copy">
+                <strong>Panel {{ panel.panel }}</strong>
+                <dl>
+                  <dt>Category</dt>
+                  <dd>{{ panel.visualization_category }}</dd>
+                  <dt>Subtype</dt>
+                  <dd>{{ panel.visualization_subtype }}</dd>
+                </dl>
+              </div>
+              <fieldset>
+                <legend>Category</legend>
+                <label><input type="radio" name="{{ output.model }}-{{ panel_key }}-category" data-field="category_correct" value="true" {{ 'checked' if category_saved == true }}> True</label>
+                <label><input type="radio" name="{{ output.model }}-{{ panel_key }}-category" data-field="category_correct" value="false" {{ 'checked' if category_saved == false }}> False</label>
+              </fieldset>
+              <fieldset>
+                <legend>Subtype</legend>
+                <label><input type="radio" name="{{ output.model }}-{{ panel_key }}-subtype" data-field="subtype_correct" value="true" {{ 'checked' if subtype_saved == true }}> True</label>
+                <label><input type="radio" name="{{ output.model }}-{{ panel_key }}-subtype" data-field="subtype_correct" value="false" {{ 'checked' if subtype_saved == false }}> False</label>
+              </fieldset>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p class="missing">No generated output found for this image.</p>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </div>
+{% endblock %}

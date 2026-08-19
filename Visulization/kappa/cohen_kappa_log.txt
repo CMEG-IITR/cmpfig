@@ -1,0 +1,138 @@
+
+============================================================
+Run timestamp : 2026-05-07 02:50:07
+File 1        : alloy_project_01.csv
+File 2        : alloy_project_02.csv
+
+File 1 images : 102
+File 2 images : 102
+Common images : 102
+
+Image        File1 labels                             File2 labels                             Match
+----------------------------------------------------------------------------------------------------
+img16        ('A', 'B', 'C', 'D', 'E', 'F')           ('A', 'B', 'C', 'D', 'E', 'F')           YES
+img101       ('single',)                              ('single',)                              YES
+img102       ('single',)                              ('single',)                              YES
+img114       ('single',)                              ('A', 'B')                               NO
+img117       ('A', 'B', 'C')                          ('A', 'B', 'C')                          YES
+img126       ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J') ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J') YES
+img128       ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I') ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I') YES
+img129       ('A', 'B', 'C', 'D')                     ('A', 'B', 'C', 'D')                     YES
+img134       ('A', 'B', 'C', 'D', 'E')                ('A', 'B', 'C', 'D', 'E')                YES
+img1000      ('A', 'B', 'C')                          ('A', 'B', 'C')                          YES
+img1016      ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I') ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I') YES
+img1018      ('A', 'B')                               ('A', 'C')                               NO
+img1019      ('A', 'B', 'C', 'D', 'E', 'F')           ('A', 'B', 'C', 'D', 'E', 'F')           YES
+img1023      ('A', 'B', 'C', 'D', 'E', 'F')           ('A', 'B', 'C', 'D', 'E', 'F')           YES
+img1024      ('A', 'B')                               ('A', 'B')                               YES
+img1026      ('A', 'B', 'C', 'D', 'E', 'F', 'unlabel', 'unlabel') ('A', 'B', 'C', 'D', 'E', 'F', 'unlabel', 'unlabel') YES
+img1027      ('A', 'B')                               ('A', 'B')                               YES
+img1028      ('A', 'B', 'C', 'D')                     ('A', 'B', 'C', 'D')                     YES
+img1030      ('A', 'B', 'COMMON_ALL')                 ('A', 'B', 'COMMON_ALL')                 YES
+img1031      ('A', 'B', 'C', 'D', 'E', 'F')           ('A', 'B', 'C', 'D', 'E', 'F')           YES
+img1054      ('A', 'B')                               ('B', 'B')                               NO
+img1055      ('A', 'B', 'C', 'D', 'E')                ('A', 'B', 'C', 'D', 'E')                YES
+img1060      ('A', 'B', 'C')                          ('A', 'B', 'C')                          YES
+img1061      ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I') ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I') YES
+img1062      ('A', 'B', 'C', 'D', 'E')                ('B', 'B', 'C', 'D', 'E')                NO
+img1063      ('A', 'B', 'C', 'D', 'E', 'F', 'G')      ('A', 'B', 'C', 'D', 'E', 'F', 'G')      YES
+img1064      ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H') ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H') YES
+img1065      ('A', 'A', 'B', 'C')                     ('A', 'A', 'B', 'C')                     YES
+img1066      ('A', 'A', 'B', 'C', 'D', 'E', 'F')      ('A', 'A', 'B', 'C', 'D', 'E', 'F')      YES
+img1067      ('A', 'B', 'C', 'D', 'E', 'F', 'G')      ('A', 'B', 'C', 'D', 'E', 'F', 'G')      YES
+img1068      ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H') ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H') YES
+img1070      ('A', 'A', 'B', 'C', 'D', 'E', 'F', 'G') ('A', 'A', 'B', 'C', 'D', 'E', 'F', 'G') YES
+img1072      ('A', 'B', 'C', 'D', 'E', 'F')           ('A', 'B', 'C', 'D', 'E', 'F')           YES
+img1096      ('A', 'B')                               ('A', 'B')                               YES
+img1100      ('A', 'B', 'C', 'D')                     ('A', 'B', 'C', 'D')                     YES
+img1107      ('A', 'B', 'C', 'D', 'E', 'F')           ('A', 'B', 'C', 'D', 'E', 'F')           YES
+img1111      ('A', 'B', 'C', 'COMMON_ALL', 'D', 'E', 'F') ('A', 'B', 'C', 'COMMON_ALL', 'D', 'E', 'F') YES
+img1121      ('A', 'B', 'C', 'D')                     ('A', 'B', 'C', 'D')                     YES
+img1125      ('A', 'B', 'C', 'D')                     ('A', 'B', 'D')                          NO
+img1129      ('A', 'B', 'C')                          ('A', 'B', 'C')                          YES
+img1133      ('A', 'B', 'C')                          ('A', 'B', 'C')                          YES
+img1137      ('A', 'B', 'C')                          ('A', 'B', 'C')                          YES
+img1149      ('A', 'B', 'C', 'D')                     ('A', 'B', 'C', 'D')                     YES
+img1170      ('A', 'B', 'C', 'COMMON_ALL', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K') ('A', 'B', 'C', 'COMMON_ALL', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K') YES
+img1172      ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I') ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I') YES
+img1209      ('A', 'B', 'C')                          ('A', 'B', 'C')                          YES
+img1212      ('A', 'B', 'C', 'D', 'E')                ('A', 'B', 'C', 'D', 'E')                YES
+img1236      ('A', 'B', 'C', 'D')                     ('A', 'B', 'C', 'D')                     YES
+img1237      ('A', 'B')                               ('A', 'B')                               YES
+img1238      ('A', 'A', 'B', 'C', 'D')                ('A', 'A', 'B', 'C', 'D')                YES
+img1242      ('A', 'B', 'C')                          ('A', 'B', 'C')                          YES
+img1243      ('A', 'B', 'C')                          ('A', 'B', 'C')                          YES
+img1244      ('A', 'B', 'C', 'D')                     ('A', 'B', 'C', 'D')                     YES
+img1245      ('A', 'B', 'C', 'D')                     ('A', 'B', 'C', 'D')                     YES
+img1246      ('A', 'B')                               ('A', 'B')                               YES
+img1263      ('A', 'B', 'C', 'D', 'E', 'F')           ('A', 'B', 'C', 'D', 'E', 'F')           YES
+img1264      ('A', 'B')                               ('A', 'B')                               YES
+img1265      ('single',)                              ('single',)                              YES
+img1269      ('A', 'B', 'C', 'D')                     ('A', 'B', 'C', 'D')                     YES
+img1270      ('A', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R') ('A', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R') YES
+img1277      ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I') ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I') YES
+img1280      ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I') ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I') YES
+img1284      ('A', 'B', 'B', 'C')                     ('A', 'B', 'B', 'C')                     YES
+img1287      ('A', 'B')                               ('A', 'B')                               YES
+img1290      ('A', 'B', 'C')                          ('A', 'B', 'C')                          YES
+img1291      ('A', 'B')                               ('A', 'B')                               YES
+img1293      ('A', 'B')                               ('A', 'B')                               YES
+img1310      ('A', 'B', 'C', 'D', 'E', 'F')           ('A', 'B', 'C', 'D', 'E', 'F')           YES
+img1337      ('A', 'B', 'C', 'D', 'E', 'F')           ('A', 'B', 'C', 'D', 'E', 'F')           YES
+img1340      ('A', 'B', 'C')                          ('A', 'B', 'C')                          YES
+img1352      ('A', 'B', 'C', 'COMMON_PARTIAL', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L') ('A', 'B', 'C', 'COMMON_PARTIAL', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L') YES
+img1353      ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H') ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H') YES
+img1357      ('A', 'B', 'C', 'D', 'E', 'F', 'G')      ('A', 'B', 'C', 'D', 'E', 'F', 'G')      YES
+img1358      ('A', 'B')                               ('A', 'B')                               YES
+img1362      ('A', 'A', 'A', 'A')                     ('A', 'A', 'A', 'A')                     YES
+img1365      ('A', 'B', 'C', 'D', 'E')                ('A', 'B', 'C', 'D', 'E')                YES
+img1381      ('A', 'B', 'C', 'D', 'E', 'F')           ('A', 'B', 'C', 'D', 'E', 'F')           YES
+img1398      ('A', 'B', 'C')                          ('A', 'B', 'C')                          YES
+img1399      ('A', 'B')                               ('A', 'B')                               YES
+img1401      ('A', 'B')                               ('A', 'B')                               YES
+img1404      ('A', 'B')                               ('A', 'B')                               YES
+img1427      ('A', 'A', 'B', 'C', 'D', 'E', 'F')      ('A', 'A', 'B', 'C', 'D', 'E', 'F')      YES
+img1431      ('A', 'B')                               ('A', 'B')                               YES
+img1435      ('A', 'B', 'C')                          ('A', 'B', 'C')                          YES
+img1436      ('A', 'B', 'C')                          ('A', 'B', 'C')                          YES
+img1440      ('A', 'B', 'C')                          ('A', 'B', 'C')                          YES
+img1445      ('A', 'B', 'C', 'D', 'E', 'F')           ('A', 'B', 'C', 'D', 'E', 'F')           YES
+img1446      ('A', 'B')                               ('A', 'C')                               NO
+img1459      ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H') ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H') YES
+img1480      ('A', 'A', 'B', 'C', 'COMMON_ALL')       ('A', 'A', 'B', 'C', 'COMMON_ALL')       YES
+img1486      ('A', 'B', 'C', 'D', 'E')                ('A', 'B', 'C', 'D', 'E')                YES
+img1497      ('A', 'B', 'C', 'D')                     ('A', 'B', 'C', 'D')                     YES
+img1503      ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J') ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J') YES
+img1504      ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N') ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N') YES
+img1507      ('A', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M') ('A', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M') YES
+img1514      ('A', 'B', 'C', 'COMMON_ALL', 'D')       ('B', 'B', 'C', 'COMMON_ALL', 'D')       NO
+img1522      ('A', 'B', 'C', 'D')                     ('A', 'B', 'C', 'D')                     YES
+img1542      ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L') ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L') YES
+img1555      ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P') ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P') YES
+img1556      ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I') ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I') YES
+img1590      ('A', 'B')                               ('A', 'B')                               YES
+img1669      ('A', 'B')                               ('A', 'B')                               YES
+
+============================================================
+Total compared images : 102
+Agreed                : 95
+Disagreed             : 7
+Observed agreement Po : 0.9314
+Cohen's Kappa         : 0.9245
+Interpretation        : Almost Perfect
+
+--- Disagreements detail ---
+  img114: Annotator1=('single',)
+        Annotator2=('A', 'B')
+  img1018: Annotator1=('A', 'B')
+        Annotator2=('A', 'C')
+  img1054: Annotator1=('A', 'B')
+        Annotator2=('B', 'B')
+  img1062: Annotator1=('A', 'B', 'C', 'D', 'E')
+        Annotator2=('B', 'B', 'C', 'D', 'E')
+  img1125: Annotator1=('A', 'B', 'C', 'D')
+        Annotator2=('A', 'B', 'D')
+  img1446: Annotator1=('A', 'B')
+        Annotator2=('A', 'C')
+  img1514: Annotator1=('A', 'B', 'C', 'COMMON_ALL', 'D')
+        Annotator2=('B', 'B', 'C', 'COMMON_ALL', 'D')

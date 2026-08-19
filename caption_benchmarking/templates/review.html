@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ── Category & Subtype ─────────────────────────────────────────────────── -->
+<section class="review-section">
+  <h2 class="section-title">Category &amp; Subtype</h2>
+  <div class="cat-table-wrap">
+    <table class="cat-table">
+      <thead>
+        <tr>
+          <th class="panel-col">Panel</th>
+          {% for label in model_labels %}
+          <th>{{ label }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for group in cat_panel_groups %}
+        <tr>
+          <td class="panel-id-cell">{{ group.panel_id }}</td>
+          {% for cell in group.cells %}
+          {% if cell %}
+          <td class="cat-cell" data-model="{{ cell.model }}" data-panel="{{ group.panel_id }}">
+            <div class="cat-labels">
+              <span class="cat-name">{{ cell.category }}</span>
+              <span class="sub-name">{{ cell.subtype }}</span>
+            </div>
+            <div class="radio-pair">
+              <span class="rp-label">Cat</span>
+              <label class="radio-tf">
+                <input type="radio"
+                  name="{{ cell.model }}--{{ group.panel_id }}--cat"
+                  data-field="category_correct"
+                  data-model="{{ cell.model }}"
+                  data-panel="{{ group.panel_id }}"
+                  value="true"
+                  {{ 'checked' if cell.cat_saved == true }}>Y
+              </label>
+              <label class="radio-tf">
+                <input type="radio"
+                  name="{{ cell.model }}--{{ group.panel_id }}--cat"
+                  data-field="category_correct"
+                  data-model="{{ cell.model }}"
+                  data-panel="{{ group.panel_id }}"
+                  value="false"
+                  {{ 'checked' if cell.cat_saved == false }}>N
+              </label>
+            </div>
+            <div class="radio-pair">
+              <span class="rp-label">Sub</span>
+              <label class="radio-tf">
+                <input type="radio"
+                  name="{{ cell.model }}--{{ group.panel_id }}--sub"
+                  data-field="subtype_correct"
+                  data-model="{{ cell.model }}"
+                  data-panel="{{ group.panel_id }}"
+                  value="true"
+                  {{ 'checked' if cell.sub_saved == true }}>Y
+              </label>
+              <label class="radio-tf">
+                <input type="radio"
+                  name="{{ cell.model }}--{{ group.panel_id }}--sub"
+                  data-field="subtype_correct"
+                  data-model="{{ cell.model }}"
+                  data-panel="{{ group.panel_id }}"
+                  value="false"
+                  {{ 'checked' if cell.sub_saved == false }}>N
+              </label>
+            </div>
+          </td>
+          {% else %}
+          <td class="cat-cell cat-cell--missing"><span>—</span></td>
+          {% endif %}
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── Subcaption & Summary ───────────────────────────────────────────────── -->
+<section class="review-section">
+  <h2 class="section-title">Subcaption &amp; Summary</h2>
+  {% for group in sum_panel_groups %}
+  <div class="sum-panel-group">
+    <div class="sum-panel-header">Panel {{ group.panel_id }}</div>
+    <div class="sum-models-row">
+      {% for cell in group.cells %}
+      <div class="sum-model-col{% if not cell.available %} sum-model-col--missing{% endif %}">
+        <div class="sum-model-label">{{ cell.model_label }}</div>
+        {% if cell.available %}
+        <div class="sum-subcap-block">
+          <dl class="sum-text">
+            <dt>Subcaption</dt>
+            <dd>{{ cell.subcaption }}</dd>
+          </dl>
+          <fieldset class="quality-set">
+            <legend>Quality</legend>
+            {% for val in ['poor', 'average', 'good'] %}
+            <label>
+              <input type="radio"
+                name="{{ cell.model }}--{{ group.panel_id }}--subcap"
+                data-field="subcaption_quality"
+                data-model="{{ cell.model }}"
+                data-panel="{{ group.panel_id }}"
+                value="{{ val }}"
+                {{ 'checked' if cell.subcap_saved == val }}>{{ val }}
+            </label>
+            {% endfor %}
+          </fieldset>
+        </div>
+        <div class="sum-sum-block">
+          <dl class="sum-text">
+            <dt>Summary</dt>
+            <dd>{{ cell.summary }}</dd>
+          </dl>
+          <fieldset class="quality-set">
+            <legend>Quality</legend>
+            {% for val in ['poor', 'average', 'good'] %}
+            <label>
+              <input type="radio"
+                name="{{ cell.model }}--{{ group.panel_id }}--sum"
+                data-field="summary_quality"
+                data-model="{{ cell.model }}"
+                data-panel="{{ group.panel_id }}"
+                value="{{ val }}"
+                {{ 'checked' if cell.sum_saved == val }}>{{ val }}
+            </label>
+            {% endfor %}
+          </fieldset>
+        </div>
+        <div class="sum-hallu-block">
+          <fieldset class="quality-set hallu-set">
+            <legend>Hallucination</legend>
+            <label class="hallu-lbl">
+              <input type="radio"
+                name="{{ cell.model }}--{{ group.panel_id }}--hallu"
+                data-field="hallucination"
+                data-model="{{ cell.model }}"
+                data-panel="{{ group.panel_id }}"
+                value="yes"
+                {{ 'checked' if cell.hallu_saved == 'yes' }}>Yes
+            </label>
+            <label class="hallu-lbl">
+              <input type="radio"
+                name="{{ cell.model }}--{{ group.panel_id }}--hallu"
+                data-field="hallucination"
+                data-model="{{ cell.model }}"
+                data-panel="{{ group.panel_id }}"
+                value="no"
+                {{ 'checked' if cell.hallu_saved == 'no' }}>No
+            </label>
+          </fieldset>
+        </div>
+        {% else %}
+        <p class="missing">No output.</p>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock %}
