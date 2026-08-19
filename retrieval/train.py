@@ -66,9 +66,32 @@ def save_checkpoint(
     )
 
 
+def _remap_state_dict(ckpt_sd: dict, model_sd: dict) -> dict:
+    """
+    Handles a `transformers` version skew where CLIPVisionModel's internal
+    submodule path gained/lost a `vision_model.` prefix between the version
+    used to train the checkpoint and the version installed now. Remaps keys
+    so the same checkpoint loads regardless of which layout is active.
+    """
+    fixed = {}
+    for k, v in ckpt_sd.items():
+        if k in model_sd:
+            fixed[k] = v
+            continue
+        if k.startswith("image_encoder.") and not k.startswith("image_encoder.vision_model."):
+            alt = k.replace("image_encoder.", "image_encoder.vision_model.", 1)
+        elif k.startswith("image_encoder.vision_model."):
+            alt = k.replace("image_encoder.vision_model.", "image_encoder.", 1)
+        else:
+            alt = k
+        fixed[alt if alt in model_sd else k] = v
+    return fixed
+
+
 def load_checkpoint(path: str, model: DualEncoder, optimizer=None, scheduler=None):
     ckpt = torch.load(path, map_location="cpu")
-    model.load_state_dict(ckpt["model_state_dict"])
+    state_dict = _remap_state_dict(ckpt["model_state_dict"], model.state_dict())
+    model.load_state_dict(state_dict)
     if optimizer is not None and "optimizer_state_dict" in ckpt:
         optimizer.load_state_dict(ckpt["optimizer_state_dict"])
     if scheduler is not None and "scheduler_state_dict" in ckpt:

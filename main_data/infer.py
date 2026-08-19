@@ -45,7 +45,7 @@ def get_args():
     p.add_argument("--conf",        type=float, default=0.6,
                    help="Confidence threshold (default: 0.55)")
     p.add_argument("--iou",         type=float, default=0.4,
-                   help="NMS IoU threshold (default: 0.45)")
+                   help="NMS IoU threshold (default: 0.4)")
     p.add_argument("--imgsz",       type=int,   default=1024,
                    help="Inference image size (default: 1024)")
     p.add_argument("--device",      default="",

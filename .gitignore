@@ -5,6 +5,7 @@
 checkpoints/
 checkpoints_mydata/
 outputs/
+MatDetect/third_party/
 # ── YOLO / benchmark runs ─────────────────────────────────────────────────────
 runs/
 ModelBench/yolo*.pt
@@ -25,6 +26,7 @@ generated_subcaptions_*.zip
 balanced_subset.csv
 
 # ── Large main_data subdirectories ───────────────────────────────────────────
+Experiment/
 *_prod_json/
 *_json/
 *_prod_crops/
@@ -37,7 +39,9 @@ splits/
 main_data/verify_alignment/data
 retrieval/outputs_proper
 retrieval/outputs_hardneg_20ep
-retrieval/outputs_proper
+retrieval/outputs_no_hardneg_20ep/demo_cache/
+*.npz
+
 # ── MatDetect image/annotation data ──────────────────────────────────────────
 all_mydata/
 my_annotated_data/
@@ -51,7 +55,9 @@ rfdetr_env/
 venv/
 .venv/
 env/
-
+# Testing
+retrieval/paper_figures/
+retrieval/paper_figures*.py
 # ── Python cache ──────────────────────────────────────────────────────────────
 __pycache__/
 *.pyc
