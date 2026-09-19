@@ -4,18 +4,19 @@ paper_stats.py — produces all dataset statistics needed for the paper.
 
 Covers:
   1. Detection→annotation join evaluation  (from build_dataset logs)
-  2. Out-of-taxonomy subtype rate          (from dataset_index.json)
+  2. Taxonomy validity (category/subtype pairing) (from dataset_index.json)
   3. Inter-annotator agreement             (from cohen_kappa_log.txt)
 
 Run from the cmpfig root:
     python paper_stats.py
 """
 
+import contextlib
 import json
 import os
 import re
+import sys
 import builtins
-from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).parent
@@ -40,42 +41,7 @@ LOG_FILES = {
 }
 DATASET_INDEX = ROOT / "Visulization" / "dataset_index.json"
 KAPPA_LOG     = ROOT / "Visulization" / "kappa" / "cohen_kappa_log.txt"
-
-# ── Valid taxonomy ─────────────────────────────────────────────────────────────
-VALID_SUBTYPES = {
-    "SEM","TEM","STEM","HAADF-STEM","BF-TEM","DF-TEM","Optical Micrograph",
-    "Confocal Microscopy","AFM","Fluorescence Microscopy","Live/Dead Staining",
-    "XRD Pattern","SAED","EBSD Map","Pole Figure","Inverse Pole Figure",
-    "Neutron Diffraction","Synchrotron Diffraction",
-    "XPS Spectrum","Raman Spectrum","FTIR Spectrum","EDX Spectrum","EELS Spectrum",
-    "NMR Spectrum","Mass Spectrum","UV-Vis Spectrum","Photoluminescence Spectrum",
-    "XANES Spectrum","EXAFS Spectrum","Mössbauer Spectrum",
-    "DSC Curve","TGA Curve","DMA Curve","TMA Curve",
-    "Binary Phase Diagram","Ternary Phase Diagram","TTT Diagram","CCT Diagram",
-    "CALPHAD Diagram","Pourbaix Diagram",
-    "Stress-Strain Curve","Load-Displacement Curve","Nanoindentation Curve",
-    "Hardness Map","Fatigue/S-N Curve","Creep Curve","Fracture Toughness Plot",
-    "DIC Strain Map","Wear/Tribology Plot",
-    "Cyclic Voltammogram","Charge-Discharge Curve","Capacity Retention Plot",
-    "Coulombic Efficiency Plot","Nyquist Plot","Bode Plot","Tafel Plot",
-    "Polarization Curve","Polarisation Curve","GITT/PITT Curve","Rate Capability Plot",
-    "M-H Hysteresis Loop","M-T Curve","ZFC/FC Curve","I-V Curve","C-V Curve",
-    "Band Structure","Density of States","Hall Effect Plot",
-    "Absorbance Spectrum","Transmittance Spectrum","Reflectance Spectrum",
-    "EQE/IQE Plot","J-V Curve","Ellipsometry Plot","Refractive Index Plot",
-    "APT Reconstruction","Micro-CT","FIB-SEM Tomography","3D Reconstruction",
-    "EDS Map","WDS Map","EBSD IPF Map","Elemental Distribution Map",
-    "DFT Result","MD Snapshot","MD Trajectory","Phase-Field Simulation",
-    "FEA/FEM Result","Monte Carlo Result",
-    "Parity Plot","Confusion Matrix","ROC Curve","Learning Curve",
-    "Feature Importance Plot","SHAP Plot","t-SNE/UMAP/PCA Plot",
-    "Unit Cell","Atomic Model","Supercell",
-    "Bar Chart","Scatter Plot","Line Graph","Box Plot","Contour Plot","Heatmap",
-    "Radar Chart","Ashby Plot","Arrhenius Plot","Histogram",
-    "Process Schematic","Flowchart","Mechanism Diagram","Experimental Setup",
-    "Sample Photo","Equipment Photo","In-situ Photo",
-    "Data Table","other",
-}
+TAXONOMY_SOURCE = ROOT / "caption_benchmarking" / "gen_subcaption_azure.py"
 
 
 def sep(title=""):
@@ -144,33 +110,39 @@ Join mechanism:
 """)
 
 
-# ── 2. Out-of-taxonomy subtype rate ───────────────────────────────────────────
-sep("2. OUT-OF-TAXONOMY SUBTYPE RATE")
+# ── 2. Taxonomy validity (category/subtype pairing) ───────────────────────────
+sep("2. TAXONOMY VALIDITY (category/subtype pairing)")
 
 if not DATASET_INDEX.exists():
     print(f"  [skip] {DATASET_INDEX} not found")
+elif not TAXONOMY_SOURCE.exists():
+    print(f"  [skip] {TAXONOMY_SOURCE} not found")
 else:
-    with open(DATASET_INDEX, encoding="utf-8") as f:
-        data = json.load(f)
+    sys.path.insert(0, str(ROOT / "Visulization"))
+    from taxonomy_audit import load_taxonomy, load_metadata, audit, report as taxonomy_report, _Tee
 
-    total   = len(data)
-    invalid = [d for d in data if d.get("visualization_subtype", "") not in VALID_SUBTYPES]
-    counts  = Counter(d.get("visualization_subtype", "") for d in invalid)
+    taxonomy = load_taxonomy(TAXONOMY_SOURCE)
+    df = load_metadata(DATASET_INDEX)
+    df = audit(df, taxonomy)
 
-    print(f"\n  Total panels in index : {total:,}")
-    print(f"  Out-of-taxonomy       : {len(invalid):,}  ({100*len(invalid)/total:.2f}%)")
-    print(f"  Unique invalid values : {len(counts)}")
-    print(f"\n  Top out-of-taxonomy subtypes:")
-    for s, c in counts.most_common(15):
-        print(f"    {c:>5}  {s}")
+    # taxonomy_audit.report() prints via plain print(); route it through the
+    # same stdout+file mirroring this script's own print() override uses, so
+    # both land in this one results file instead of a second, separate report.
+    with contextlib.redirect_stdout(_Tee(sys.stdout, _results_fp)):
+        taxonomy_report(df, header=False)
 
-    print(f"""
-  Note:
-    visualization_category is schema-enforced (JSON enum) → always valid.
-    visualization_subtype  is prompt-guided only           → {100*len(invalid)/total:.2f}% out-of-taxonomy.
-    These panels are retained but routed to training only
-    via the rare-subtype threshold (< 10 panels per subtype).
-""")
+    print(f"\n  visualization_category is schema-enforced (JSON enum) → always valid.")
+    print(f"  visualization_subtype  is prompt-guided only           → see breakdown above.")
+    print(
+        "  Correction: the routing claim in earlier drafts (\"out-of-taxonomy panels"
+        "\n  are routed to training only, via the rare-subtype threshold\") does not"
+        "\n  hold. retrieval/data.py's compute_split() force-routes a figure to train"
+        "\n  only when its DOMINANT subtype string has < rare_subtype_threshold (10)"
+        "\n  panels summed across the whole corpus — a check on string rarity, not"
+        "\n  taxonomy validity. Cross-referencing confirms only ~68 invalid panels"
+        "\n  (<1% of either the old or new invalid set) are actually force-routed;"
+        "\n  the rest pass through the normal stratified split and can land in val/test."
+    )
 
 
 # ── 3. Inter-annotator agreement ──────────────────────────────────────────────

@@ -30,36 +30,122 @@ Join mechanism:
 
 
 ============================================================
-2. OUT-OF-TAXONOMY SUBTYPE RATE
+2. TAXONOMY VALIDITY (category/subtype pairing)
 ============================================================
 
-  Total panels in index : 391,285
-  Out-of-taxonomy       : 4,459  (1.14%)
-  Unique invalid values : 143
+Total panels: 391,285
 
-  Top out-of-taxonomy subtypes:
-     3987  Generic Plot
-       31  MD Result
-       26  Rheology Curve
-       25  Infrared Thermography
-       23  Pie Chart
-       22  Table
-       15  Polar Plot
-       10  AES Spectrum
-        9  Mott-Schottky Plot
-        9  Rheology Plot
-        8  Ultrasonic wave propagation image
-        7  Other
-        7  Rheology/Viscosity Plot
-        7  Microscopy
-        6  PCA Plot
+State breakdown:
+  valid                   381,726  ( 97.56%)
+  category_as_subtype       6,487  (  1.66%)
+  wrong_parent              2,646  (  0.68%)
+  unknown_subtype             426  (  0.11%)
 
-  Note:
-    visualization_category is schema-enforced (JSON enum) → always valid.
-    visualization_subtype  is prompt-guided only           → 1.14% out-of-taxonomy.
-    These panels are retained but routed to training only
-    via the rare-subtype threshold (< 10 panels per subtype).
+Null handling (excluded from the four states above):
+  null_subtype                  0
+  null_category                 0
 
+------------------------------------------------------------
+Reconciliation vs paper (category_as_subtype + unknown_subtype)
+------------------------------------------------------------
+  Computed : 6,913  (1.77%)
+  Paper    : 5,633  (1.44%)
+  MISMATCH — diff = +1,280 panels.
+  Root cause: 2,454 panels have subtype "other" under a category other than "other". The taxonomy defines "other": ["other"] — a valid subtype only under category "other" — but the paper's flat membership check treated "other" as universally valid regardless of category, so it did not count these as invalid.
+  Residual unexplained diff: -1,174 panels.
+
+------------------------------------------------------------
+Top 20 (category, subtype) pairs — category_as_subtype
+------------------------------------------------------------
+    3,497  'Mechanical Test'              -> 'Generic Plot'
+      771  'Mechanical Test'              -> 'other'
+      421  'Spectroscopy'                 -> 'other'
+      287  'Machine Learning'             -> 'other'
+      245  'Thermal Analysis'             -> 'other'
+      238  'Electrochemistry'             -> 'Generic Plot'
+      176  'Electrochemistry'             -> 'other'
+      139  'Phase/Equilibrium Diagram'    -> 'other'
+      113  'Machine Learning'             -> 'Generic Plot'
+      105  'Microscopy'                   -> 'other'
+       82  'Optical/Photonic'             -> 'other'
+       65  'Magnetic/Electronic'          -> 'Generic Plot'
+       56  'Generic Plot'                 -> 'other'
+       54  'Simulation'                   -> 'other'
+       52  'Magnetic/Electronic'          -> 'other'
+       47  'Diffraction'                  -> 'other'
+       31  'Simulation'                   -> 'Generic Plot'
+       18  'Generic Plot'                 -> 'Table'
+       16  'Generic Plot'                 -> 'Generic Plot'
+       10  'Thermal Analysis'             -> 'Generic Plot'
+
+------------------------------------------------------------
+category_as_subtype split
+------------------------------------------------------------
+  Total category_as_subtype:                                    6,487
+  subtype == "other" (used under a category != "other"):       2,454  (37.83%)
+  subtype == another category name (e.g. "Generic Plot"):      4,033  (62.17%)
+
+------------------------------------------------------------
+Top 20 (category, subtype) pairs — wrong_parent
+------------------------------------------------------------
+      456  'Mechanical Test'              -> 'Bar Chart'
+      303  'Simulation'                   -> 'CALPHAD Diagram'
+      232  'Mechanical Test'              -> 'Line Graph'
+      216  'Machine Learning'             -> 'Bar Chart'
+      184  'Machine Learning'             -> 'Heatmap'
+      161  'Diffraction'                  -> 'EBSD IPF Map'
+      161  'Machine Learning'             -> 'Scatter Plot'
+      140  'Machine Learning'             -> 'Line Graph'
+      111  'Mechanical Test'              -> 'Scatter Plot'
+       76  'Machine Learning'             -> 'Histogram'
+       71  'Machine Learning'             -> 'Contour Plot'
+       64  'Electrochemistry'             -> 'C-V Curve'
+       56  'Machine Learning'             -> 'Flowchart'
+       53  'Machine Learning'             -> 'Box Plot'
+       40  'Microscopy'                   -> 'In-situ Photo'
+       33  'Mechanical Test'              -> 'DMA Curve'
+       31  'Simulation'                   -> 'Mechanism Diagram'
+       29  'Photograph'                   -> 'Experimental Setup'
+       20  'Microscopy'                   -> 'EBSD Map'
+       19  'Electrochemistry'             -> 'Bar Chart'
+
+------------------------------------------------------------
+Per-category consistency rate (worst first)
+------------------------------------------------------------
+  71.68%  n=  4,862  valid=  3,485  Machine Learning
+  76.16%  n=    302  valid=    230  other
+  85.34%  n= 35,393  valid= 30,205  Mechanical Test
+  85.59%  n=    798  valid=    683  Optical/Photonic
+  91.00%  n=  1,455  valid=  1,324  Magnetic/Electronic
+  91.11%  n=  6,230  valid=  5,676  Electrochemistry
+  94.08%  n=  4,458  valid=  4,194  Thermal Analysis
+  94.24%  n=  2,481  valid=  2,338  Phase/Equilibrium Diagram
+  94.58%  n=  8,419  valid=  7,963  Spectroscopy
+  98.09%  n= 27,904  valid= 27,372  Simulation
+  99.19%  n= 27,089  valid= 26,869  Diffraction
+  99.61%  n=  1,790  valid=  1,783  Crystal Structure
+  99.74%  n= 76,676  valid= 76,478  Generic Plot
+  99.79%  n= 97,578  valid= 97,369  Microscopy
+  99.84%  n= 11,621  valid= 11,602  Compositional Map
+  99.89%  n= 29,212  valid= 29,179  Photograph
+  99.91%  n=  7,714  valid=  7,707  Tomography/3D
+  99.93%  n= 46,937  valid= 46,903  Schematic/Diagram
+  100.00%  n=    366  valid=    366  Table
+
+------------------------------------------------------------
+Unique invalid subtype strings (category_as_subtype + unknown_subtype): 144
+------------------------------------------------------------
+
+  visualization_category is schema-enforced (JSON enum) → always valid.
+  visualization_subtype  is prompt-guided only           → see breakdown above.
+  Correction: the routing claim in earlier drafts ("out-of-taxonomy panels
+  are routed to training only, via the rare-subtype threshold") does not
+  hold. retrieval/data.py's compute_split() force-routes a figure to train
+  only when its DOMINANT subtype string has < rare_subtype_threshold (10)
+  panels summed across the whole corpus — a check on string rarity, not
+  taxonomy validity. Cross-referencing confirms only ~68 invalid panels
+  (<1% of either the old or new invalid set) are actually force-routed;
+  the rest pass through the normal stratified split and can land in val/test.
 
 ============================================================
 3. INTER-ANNOTATOR AGREEMENT (Cohen's κ)
