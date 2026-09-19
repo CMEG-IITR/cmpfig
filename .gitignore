@@ -24,6 +24,10 @@ dataset_index.json
 */_summary.json
 generated_subcaptions_*.zip
 balanced_subset.csv
+dataset_index_pre_dedup.json.bak
+merged_duplicates.csv
+additive_elsevier_dataset.csv
+steel_prod_dataset.csv
 
 # ── Large main_data subdirectories ───────────────────────────────────────────
 Experiment/
@@ -40,8 +44,10 @@ main_data/verify_alignment/data
 retrieval/outputs_proper
 retrieval/outputs_hardneg_20ep
 retrieval/outputs_no_hardneg_20ep/demo_cache/
+retrieval/outputs_no_hardneg_20ep_v2/demo_cache/
 *.npz
-
+main_data/steel_prod_img/
+main_data/additive_elsevier_crops/
 # ── MatDetect image/annotation data ──────────────────────────────────────────
 all_mydata/
 my_annotated_data/
