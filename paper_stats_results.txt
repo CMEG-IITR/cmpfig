@@ -7,18 +7,20 @@ Domain         Scanned   Matched  Match%  No JSON  PanelMiss
 ------------------------------------------------------------
 alloy           41,682    36,249   87.0%        3      5,426
 ceramics       193,379   164,366   85.0%        0     28,992
-composite      132,851   103,597   78.0%   11,354     17,893
-ni_alloy       101,184    87,394   86.4%    1,353     12,434
+composite       11,766     8,837   75.2%    1,469      1,453
+ni_alloy        81,381    70,024   86.0%    1,353     10,001
+steel           46,004    36,631   79.6%        0      9,372
+additive        86,691    75,178   86.7%        0     11,501
 ------------------------------------------------------------
-TOTAL          469,096   391,606   83.5%   12,710     64,745
+TOTAL          460,903   391,285   84.9%    2,825     66,745
 
 Summary:
-  Detected panels processed : 469,061
-  Successfully joined       : 391,606  (83.5%)
-  Unmatched — no LLM JSON   : 12,710  (2.7%)
-  Unmatched — panel key miss: 64,745  (13.8%)
-  Total unmatched (excluded): 77,455  (16.5%)
-  Common-label panels skipped (bad filename): 35
+  Detected panels processed : 460,855
+  Successfully joined       : 391,285  (84.9%)
+  Unmatched — no LLM JSON   : 2,825  (0.6%)
+  Unmatched — panel key miss: 66,745  (14.5%)
+  Total unmatched (excluded): 69,570  (15.1%)
+  Common-label panels skipped (bad filename): 48
 
 Join mechanism:
   Crop filename letter  (e.g. imgXXXX_B.jpg → key "b")
@@ -31,30 +33,30 @@ Join mechanism:
 2. OUT-OF-TAXONOMY SUBTYPE RATE
 ============================================================
 
-  Total panels in index : 391,606
-  Out-of-taxonomy       : 5,633  (1.44%)
-  Unique invalid values : 53
+  Total panels in index : 391,285
+  Out-of-taxonomy       : 4,459  (1.14%)
+  Unique invalid values : 143
 
   Top out-of-taxonomy subtypes:
-     5381  Generic Plot
-       35  MD Result
-       31  Table
+     3987  Generic Plot
+       31  MD Result
+       26  Rheology Curve
+       25  Infrared Thermography
        23  Pie Chart
-       15  Infrared Thermography
-       14  Mott-Schottky Plot
-       14  Other
-       11  X-ray imaging
+       22  Table
+       15  Polar Plot
+       10  AES Spectrum
+        9  Mott-Schottky Plot
+        9  Rheology Plot
         8  Ultrasonic wave propagation image
-        6  Western blot
-        6  Photograph
-        5  Geological Map
-        5  PCA Plot
-        4  Infrared Thermal Image
-        4  X-ray
+        7  Other
+        7  Rheology/Viscosity Plot
+        7  Microscopy
+        6  PCA Plot
 
   Note:
     visualization_category is schema-enforced (JSON enum) → always valid.
-    visualization_subtype  is prompt-guided only           → 1.44% out-of-taxonomy.
+    visualization_subtype  is prompt-guided only           → 1.14% out-of-taxonomy.
     These panels are retained but routed to training only
     via the rare-subtype threshold (< 10 panels per subtype).
 

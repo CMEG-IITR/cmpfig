@@ -35,6 +35,8 @@ LOG_FILES = {
     "ceramics": ROOT / "main_data" / "ceramics_build_dataset.log",
     "composite":ROOT / "main_data" / "composite_build_dataset.log",
     "ni_alloy": ROOT / "main_data" / "ni_alloy_build_dataset.log",
+    "steel":    ROOT / "main_data" / "steel_prod_dataset.log",
+    "additive": ROOT / "main_data" / "additive_elsevier_dataset.log",
 }
 DATASET_INDEX = ROOT / "Visulization" / "dataset_index.json"
 KAPPA_LOG     = ROOT / "Visulization" / "kappa" / "cohen_kappa_log.txt"
@@ -182,13 +184,20 @@ else:
         m = re.search(pattern, text)
         return m.group(1).strip() if m else "N/A"
 
+    common_images = grab(r'Common images\s*:\s*(\d+)')
+    agreed        = grab(r'Agreed\s*:\s*(\d+)')
+    disagreed     = grab(r'Disagreed\s*:\s*(\d+)')
+    po            = grab(r'Observed agreement Po\s*:\s*([\d.]+)')
+    kappa         = grab(r"Cohen's Kappa\s*:\s*([\d.]+)")
+    interpretation = grab(r'Interpretation\s*:\s*(.+)')
+
     print(f"""
-  Images annotated by both  : {grab(r'Common images\s*:\s*(\d+)')}
-  Agreed (exact label set)  : {grab(r'Agreed\s*:\s*(\d+)')}
-  Disagreed                 : {grab(r'Disagreed\s*:\s*(\d+)')}
-  Observed agreement (Po)   : {grab(r'Observed agreement Po\s*:\s*([\d.]+)')}
-  Cohen's κ                 : {grab(r"Cohen's Kappa\s*:\s*([\d.]+)")}
-  Interpretation            : {grab(r'Interpretation\s*:\s*(.+)')}
+  Images annotated by both  : {common_images}
+  Agreed (exact label set)  : {agreed}
+  Disagreed                 : {disagreed}
+  Observed agreement (Po)   : {po}
+  Cohen's κ                 : {kappa}
+  Interpretation            : {interpretation}
 
   Unit: per-image exact match of the complete panel label set.
 """)
