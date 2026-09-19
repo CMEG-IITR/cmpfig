@@ -1,0 +1,31 @@
+build_dataset.py  —  2026-09-18 22:05:04
+============================================================
+Total image files scanned  : 86691
+Skipped (bad filename)     : 12
+Processed rows             : 86679
+
+── Image → JSON linkage ──────────────────────────────────
+  Matched (image + panel)  :  75178  (86.7%)
+  No JSON file             :      0  (0.0%)
+  JSON found, panel missing:  11501  (13.3%)
+
+── Caption linkage (of total processed) ─────────────────
+  Has subcaption + summary :  75178  (86.7%)
+
+── Output ────────────────────────────────────────────────
+  CSV  : additive_elsevier_dataset.csv
+  Log  : additive_elsevier_dataset.log
+
+── Skipped filenames (bad pattern) ──────────────────────
+  additive_elsevier_img12548_common.jpg
+  additive_elsevier_img35818_common.jpg
+  additive_elsevier_img4085_common.jpg
+  additive_elsevier_img44767_common.jpg
+  additive_elsevier_img44768_common.jpg
+  additive_elsevier_img44769_common.jpg
+  additive_elsevier_img4890_common.jpg
+  additive_elsevier_img53679_common.jpg
+  additive_elsevier_img59000_common.jpg
+  additive_elsevier_img5992_common.jpg
+  additive_elsevier_img62999_common.jpg
+  additive_elsevier_img63702_common.jpg

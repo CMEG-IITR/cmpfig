@@ -27,8 +27,21 @@ Compound figures — multi-panel images labeled A, B, C… — are the dominant 
 
 | | Count |
 |---|---|
-| Source figures | ~170,000+ |
-| Panels with full metadata | **391,606** |
+| Source figures | ~147,500 |
+| Panels with full metadata | **391,285** |
+
+**By domain:**
+
+| Domain | Panels |
+|---|---|
+| Ceramics | 164,366 |
+| Additive manufacturing | 75,178 |
+| Ni-alloy | 70,024 |
+| Steel | 36,631 |
+| Alloy | 36,249 |
+| Composite | 8,837 |
+
+Cross-domain duplicate figures (the same source figure independently scraped into more than one domain pipeline) have been identified and removed, so each panel appears exactly once.
 
 ---
 

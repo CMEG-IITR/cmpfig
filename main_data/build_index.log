@@ -1,0 +1,67 @@
+[dedup] composite: 46590 cross-domain duplicate figures will be excluded
+[dedup] ni_alloy: 7212 cross-domain duplicate figures will be excluded
+
+── ni_alloy ──────────────────────────
+  Loading CSV: ./ni_alloy_linked_dataset.csv
+  CSV rows   : 87394
+  Crop files : 81381
+  Raw matches: 70024
+  Deduped out: -0  (cross-domain duplicate figures)
+  Matched    : 70024
+  Skipped    : 11357  (no CSV match)
+
+── ceramics ──────────────────────────
+  Loading CSV: ./ceramics_linked_dataset.csv
+  CSV rows   : 164366
+  Crop files : 193379
+  Raw matches: 164366
+  Deduped out: -0  (cross-domain duplicate figures)
+  Matched    : 164366
+  Skipped    : 29013  (no CSV match)
+
+── composite ──────────────────────────
+  Loading CSV: composite_linked_dataset.csv
+  CSV rows   : 103597
+  Crop files : 11766
+  Raw matches: 8837
+  Deduped out: -0  (cross-domain duplicate figures)
+  Matched    : 8837
+  Skipped    : 2929  (no CSV match)
+
+── alloy ──────────────────────────
+  Loading CSV: alloy_linked_dataset.csv
+  CSV rows   : 36249
+  Crop files : 41682
+  Raw matches: 36249
+  Deduped out: -0  (cross-domain duplicate figures)
+  Matched    : 36249
+  Skipped    : 5433  (no CSV match)
+
+── steel ──────────────────────────
+  Loading CSV: steel_prod_dataset.csv
+  CSV rows   : 36631
+  Crop files : 46004
+  Raw matches: 36631
+  Deduped out: -0  (cross-domain duplicate figures)
+  Matched    : 36631
+  Skipped    : 9373  (no CSV match)
+
+── additive ──────────────────────────
+  Loading CSV: additive_elsevier_dataset.csv
+  CSV rows   : 75178
+  Crop files : 86691
+  Raw matches: 75178
+  Deduped out: -0  (cross-domain duplicate figures)
+  Matched    : 75178
+  Skipped    : 11513  (no CSV match)
+
+── totals ──────────────────────────────
+  Crop files : 460903
+  Raw matches: 391285
+  Deduped out: -0  (cross-domain duplicate figures)
+  Matched    : 391285
+  Skipped    : 69618  (no CSV match)
+
+Total records : 391285
+Writing → ./dataset_index.json
+Done  — 318.6 MB

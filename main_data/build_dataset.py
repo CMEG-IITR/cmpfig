@@ -19,10 +19,10 @@ import os
 import re
 from datetime import datetime
 
-IMAGES_DIR = "alloy_prod_crops"
-JSON_DIR   = "generated_subcaptions_alloy_prod"
-OUTPUT_CSV = "alloy_linked_dataset.csv"
-OUTPUT_LOG = "alloy_build_dataset.log"
+IMAGES_DIR = "steel_prod_crops"
+JSON_DIR   = "generated_subcaptions_steel_elsevier"
+OUTPUT_CSV = "steel_prod_dataset.csv"
+OUTPUT_LOG = "steel_prod_dataset.log"
 
 IMG_RE = re.compile(r"^(.+)_(single|[A-Z])(?:_(\d+))?\.jpg$", re.IGNORECASE)
 

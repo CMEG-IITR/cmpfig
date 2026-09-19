@@ -1,22 +1,20 @@
-build_dataset.py  —  2026-09-18 23:53:51
+build_dataset.py  —  2026-09-18 22:58:56
 ============================================================
-Total image files scanned  : 81381
-Skipped (bad filename)     : 3
-Processed rows             : 81378
+Total image files scanned  : 46004
+Skipped (bad filename)     : 1
+Processed rows             : 46003
 
 ── Image → JSON linkage ──────────────────────────────────
-  Matched (image + panel)  :  70024  (86.0%)
-  No JSON file             :   1353  (1.7%)
-  JSON found, panel missing:  10001  (12.3%)
+  Matched (image + panel)  :  36631  (79.6%)
+  No JSON file             :      0  (0.0%)
+  JSON found, panel missing:   9372  (20.4%)
 
 ── Caption linkage (of total processed) ─────────────────
-  Has subcaption + summary :  70024  (86.0%)
+  Has subcaption + summary :  36631  (79.6%)
 
 ── Output ────────────────────────────────────────────────
-  CSV  : ni_alloy_linked_dataset.csv
-  Log  : ni_alloy_build_dataset.log
+  CSV  : steel_prod_dataset.csv
+  Log  : steel_prod_dataset.log
 
 ── Skipped filenames (bad pattern) ──────────────────────
-  ni_alloy_img15900_common.jpg
-  ni_alloy_img21945_common.jpg
-  ni_alloy_img28709_common.jpg
+  steel_elsevier_img11322_common.jpg
