@@ -27,6 +27,7 @@ def dec(v):
 # ── Table 1 — Overall ─────────────────────────────────────────────────────────
 
 def table1_markdown(rnd, zs, ft):
+    n = f"{ft['n_samples']:,}"
     metrics = ["R@1", "R@5", "R@10", "R@50", "R@100", "MRR", "mAP@100"]
 
     header = (
@@ -57,18 +58,19 @@ def table1_markdown(rnd, zs, ft):
             f"| **{fmt(fi)}**    | {fmt(ftt):<11} |"
         )
 
-    rows.append(f"| N          | 39,315    | 39,315      | 39,315      "
-                f"| 39,315      | 39,315      |")
+    rows.append(f"| N          | {n:<9} | {n:<11} | {n:<11} "
+                f"| {n:<11} | {n:<11} |")
     return "\n".join(rows)
 
 
 def table1_latex(rnd, zs, ft):
+    n = f"{ft['n_samples']:,}".replace(",", "{,}")
     metrics = ["R@1", "R@5", "R@10", "R@50", "R@100", "MRR", "mAP@100"]
 
     lines = [
         r"\begin{table}[t]",
         r"\centering",
-        r"\caption{Overall cross-modal retrieval performance on 39{,}315 test panels."
+        rf"\caption{{Overall cross-modal retrieval performance on {n} test panels."
         r" R@K values in \%. Best result per row in \textbf{bold}.}",
         r"\label{tab:retrieval_overall}",
         r"\begin{tabular}{lcccccc}",

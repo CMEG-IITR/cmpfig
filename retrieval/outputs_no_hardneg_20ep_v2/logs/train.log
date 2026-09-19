@@ -84,3 +84,427 @@
 2026-09-19 00:24:58,888 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
 2026-09-19 00:26:38,942 INFO retrieval.train: epoch=1 step=1300 loss=2.2439 tau=0.0678 lr=1.60e-05 elapsed=100s
 2026-09-19 00:28:39,738 INFO retrieval.train: epoch=1 step=1400 loss=2.2014 tau=0.0674 lr=1.72e-05 elapsed=221s
+2026-09-19 00:30:39,192 INFO retrieval.train: epoch=1 step=1500 loss=2.1695 tau=0.0671 lr=1.84e-05 elapsed=340s
+2026-09-19 00:32:36,544 INFO retrieval.train: epoch=1 step=1600 loss=2.1399 tau=0.0667 lr=1.96e-05 elapsed=457s
+2026-09-19 00:34:34,695 INFO retrieval.train: epoch=1 step=1700 loss=2.1093 tau=0.0663 lr=2.09e-05 elapsed=575s
+2026-09-19 00:36:32,004 INFO retrieval.train: epoch=1 step=1800 loss=2.0797 tau=0.0659 lr=2.21e-05 elapsed=693s
+2026-09-19 00:38:30,117 INFO retrieval.train: epoch=1 step=1900 loss=2.0513 tau=0.0654 lr=2.33e-05 elapsed=811s
+2026-09-19 00:40:28,384 INFO retrieval.train: epoch=1 step=2000 loss=2.0269 tau=0.0649 lr=2.46e-05 elapsed=929s
+2026-09-19 00:42:34,762 INFO retrieval.train: New best val RSUM = 0.3218 → saved best.pt
+2026-09-19 00:44:33,019 INFO retrieval.train: epoch=1 step=2100 loss=2.0009 tau=0.0644 lr=2.58e-05 elapsed=1174s
+2026-09-19 00:46:30,497 INFO retrieval.train: epoch=1 step=2200 loss=1.9756 tau=0.0639 lr=2.70e-05 elapsed=1291s
+2026-09-19 00:48:28,707 INFO retrieval.train: epoch=1 step=2300 loss=1.9514 tau=0.0634 lr=2.82e-05 elapsed=1409s
+2026-09-19 00:50:27,057 INFO retrieval.train: epoch=1 step=2400 loss=1.9294 tau=0.0629 lr=2.95e-05 elapsed=1528s
+2026-09-19 00:51:16,419 INFO __main__: Epoch 1 done — avg_loss=1.9200, best_val_R@100_i2t=0.3218
+2026-09-19 00:51:25,943 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-09-19 00:51:26,170 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 00:51:26,184 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-09-19 00:51:26,414 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 00:51:26,427 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/config.json "HTTP/1.1 200 OK"
+2026-09-19 00:51:26,653 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 00:51:26,666 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-09-19 00:51:26,895 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-09-19 00:51:27,143 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-09-19 00:52:41,194 INFO retrieval.train: epoch=2 step=2500 loss=1.4856 tau=0.0622 lr=3.00e-05 elapsed=74s
+2026-09-19 00:54:38,675 INFO retrieval.train: epoch=2 step=2600 loss=1.4796 tau=0.0616 lr=3.00e-05 elapsed=191s
+2026-09-19 00:56:37,453 INFO retrieval.train: epoch=2 step=2700 loss=1.4634 tau=0.0610 lr=3.00e-05 elapsed=310s
+2026-09-19 00:58:35,060 INFO retrieval.train: epoch=2 step=2800 loss=1.4526 tau=0.0604 lr=3.00e-05 elapsed=428s
+2026-09-19 01:00:33,616 INFO retrieval.train: epoch=2 step=2900 loss=1.4379 tau=0.0599 lr=3.00e-05 elapsed=546s
+2026-09-19 01:02:31,118 INFO retrieval.train: epoch=2 step=3000 loss=1.4247 tau=0.0593 lr=3.00e-05 elapsed=664s
+2026-09-19 01:04:42,971 INFO retrieval.train: New best val RSUM = 0.5383 → saved best.pt
+2026-09-19 01:06:49,993 INFO retrieval.train: epoch=2 step=3100 loss=1.4159 tau=0.0588 lr=2.99e-05 elapsed=922s
+2026-09-19 01:08:48,884 INFO retrieval.train: epoch=2 step=3200 loss=1.4044 tau=0.0583 lr=2.99e-05 elapsed=1041s
+2026-09-19 01:10:45,622 INFO retrieval.train: epoch=2 step=3300 loss=1.3934 tau=0.0578 lr=2.99e-05 elapsed=1158s
+2026-09-19 01:12:43,486 INFO retrieval.train: epoch=2 step=3400 loss=1.3839 tau=0.0574 lr=2.99e-05 elapsed=1276s
+2026-09-19 01:14:40,267 INFO retrieval.train: epoch=2 step=3500 loss=1.3745 tau=0.0569 lr=2.98e-05 elapsed=1393s
+2026-09-19 01:16:38,303 INFO retrieval.train: epoch=2 step=3600 loss=1.3642 tau=0.0564 lr=2.98e-05 elapsed=1511s
+2026-09-19 01:17:52,420 INFO __main__: Epoch 2 done — avg_loss=1.3585, best_val_R@100_i2t=0.5383
+2026-09-19 01:18:01,802 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-09-19 01:18:02,028 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 01:18:02,066 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-09-19 01:18:02,297 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 01:18:02,314 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/config.json "HTTP/1.1 200 OK"
+2026-09-19 01:18:02,546 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 01:18:02,582 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-09-19 01:18:02,813 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-09-19 01:18:03,059 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-09-19 01:18:50,989 INFO retrieval.train: epoch=3 step=3700 loss=1.0327 tau=0.0559 lr=2.98e-05 elapsed=48s
+2026-09-19 01:20:48,027 INFO retrieval.train: epoch=3 step=3800 loss=1.0264 tau=0.0553 lr=2.97e-05 elapsed=165s
+2026-09-19 01:22:45,853 INFO retrieval.train: epoch=3 step=3900 loss=1.0216 tau=0.0548 lr=2.97e-05 elapsed=282s
+2026-09-19 01:24:42,701 INFO retrieval.train: epoch=3 step=4000 loss=1.0195 tau=0.0543 lr=2.96e-05 elapsed=399s
+2026-09-19 01:26:51,910 INFO retrieval.train: New best val RSUM = 0.6946 → saved best.pt
+2026-09-19 01:28:49,530 INFO retrieval.train: epoch=3 step=4100 loss=1.0148 tau=0.0538 lr=2.96e-05 elapsed=646s
+2026-09-19 01:30:46,045 INFO retrieval.train: epoch=3 step=4200 loss=1.0141 tau=0.0533 lr=2.95e-05 elapsed=763s
+2026-09-19 01:32:43,570 INFO retrieval.train: epoch=3 step=4300 loss=1.0109 tau=0.0529 lr=2.95e-05 elapsed=880s
+2026-09-19 01:34:40,163 INFO retrieval.train: epoch=3 step=4400 loss=1.0072 tau=0.0525 lr=2.94e-05 elapsed=997s
+2026-09-19 01:36:37,401 INFO retrieval.train: epoch=3 step=4500 loss=1.0047 tau=0.0521 lr=2.94e-05 elapsed=1114s
+2026-09-19 01:38:34,013 INFO retrieval.train: epoch=3 step=4600 loss=1.0029 tau=0.0517 lr=2.93e-05 elapsed=1231s
+2026-09-19 01:40:32,486 INFO retrieval.train: epoch=3 step=4700 loss=1.0001 tau=0.0513 lr=2.92e-05 elapsed=1349s
+2026-09-19 01:42:30,080 INFO retrieval.train: epoch=3 step=4800 loss=0.9970 tau=0.0510 lr=2.92e-05 elapsed=1467s
+2026-09-19 01:44:07,863 INFO __main__: Epoch 3 done — avg_loss=0.9943, best_val_R@100_i2t=0.6946
+2026-09-19 01:44:18,453 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-09-19 01:44:18,676 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 01:44:18,688 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-09-19 01:44:18,931 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 01:44:18,945 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/config.json "HTTP/1.1 200 OK"
+2026-09-19 01:44:19,177 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 01:44:19,190 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-09-19 01:44:19,416 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-09-19 01:44:19,658 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-09-19 01:44:42,073 INFO retrieval.train: epoch=4 step=4900 loss=0.7797 tau=0.0506 lr=2.91e-05 elapsed=22s
+2026-09-19 01:46:40,115 INFO retrieval.train: epoch=4 step=5000 loss=0.7589 tau=0.0501 lr=2.90e-05 elapsed=140s
+2026-09-19 01:48:58,748 INFO retrieval.train: New best val RSUM = 0.7789 → saved best.pt
+2026-09-19 01:50:56,463 INFO retrieval.train: epoch=4 step=5100 loss=0.7574 tau=0.0496 lr=2.89e-05 elapsed=396s
+2026-09-19 01:52:53,261 INFO retrieval.train: epoch=4 step=5200 loss=0.7591 tau=0.0492 lr=2.89e-05 elapsed=513s
+2026-09-19 01:54:51,065 INFO retrieval.train: epoch=4 step=5300 loss=0.7617 tau=0.0488 lr=2.88e-05 elapsed=631s
+2026-09-19 01:56:47,690 INFO retrieval.train: epoch=4 step=5400 loss=0.7602 tau=0.0484 lr=2.87e-05 elapsed=748s
+2026-09-19 01:58:45,442 INFO retrieval.train: epoch=4 step=5500 loss=0.7603 tau=0.0481 lr=2.86e-05 elapsed=865s
+2026-09-19 02:00:41,994 INFO retrieval.train: epoch=4 step=5600 loss=0.7584 tau=0.0477 lr=2.85e-05 elapsed=982s
+2026-09-19 02:02:39,790 INFO retrieval.train: epoch=4 step=5700 loss=0.7580 tau=0.0474 lr=2.84e-05 elapsed=1100s
+2026-09-19 02:04:36,621 INFO retrieval.train: epoch=4 step=5800 loss=0.7577 tau=0.0471 lr=2.83e-05 elapsed=1217s
+2026-09-19 02:06:34,294 INFO retrieval.train: epoch=4 step=5900 loss=0.7569 tau=0.0467 lr=2.82e-05 elapsed=1334s
+2026-09-19 02:08:30,887 INFO retrieval.train: epoch=4 step=6000 loss=0.7561 tau=0.0464 lr=2.81e-05 elapsed=1451s
+2026-09-19 02:10:42,841 INFO retrieval.train: New best val RSUM = 0.8093 → saved best.pt
+2026-09-19 02:12:48,908 INFO retrieval.train: epoch=4 step=6100 loss=0.7560 tau=0.0462 lr=2.80e-05 elapsed=1709s
+2026-09-19 02:12:55,159 INFO __main__: Epoch 4 done — avg_loss=0.7558, best_val_R@100_i2t=0.8093
+2026-09-19 02:13:05,926 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-09-19 02:13:06,159 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 02:13:06,174 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-09-19 02:13:06,403 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 02:13:06,417 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/config.json "HTTP/1.1 200 OK"
+2026-09-19 02:13:06,642 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 02:13:06,654 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-09-19 02:13:06,885 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-09-19 02:13:07,140 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-09-19 02:15:02,695 INFO retrieval.train: epoch=5 step=6200 loss=0.5661 tau=0.0457 lr=2.79e-05 elapsed=115s
+2026-09-19 02:17:00,711 INFO retrieval.train: epoch=5 step=6300 loss=0.5702 tau=0.0453 lr=2.78e-05 elapsed=233s
+2026-09-19 02:18:57,503 INFO retrieval.train: epoch=5 step=6400 loss=0.5724 tau=0.0449 lr=2.77e-05 elapsed=350s
+2026-09-19 02:20:55,325 INFO retrieval.train: epoch=5 step=6500 loss=0.5746 tau=0.0446 lr=2.75e-05 elapsed=468s
+2026-09-19 02:22:52,020 INFO retrieval.train: epoch=5 step=6600 loss=0.5763 tau=0.0443 lr=2.74e-05 elapsed=585s
+2026-09-19 02:24:49,859 INFO retrieval.train: epoch=5 step=6700 loss=0.5771 tau=0.0440 lr=2.73e-05 elapsed=702s
+2026-09-19 02:26:46,612 INFO retrieval.train: epoch=5 step=6800 loss=0.5783 tau=0.0437 lr=2.72e-05 elapsed=819s
+2026-09-19 02:28:44,474 INFO retrieval.train: epoch=5 step=6900 loss=0.5784 tau=0.0434 lr=2.71e-05 elapsed=937s
+2026-09-19 02:30:41,721 INFO retrieval.train: epoch=5 step=7000 loss=0.5782 tau=0.0431 lr=2.69e-05 elapsed=1054s
+2026-09-19 02:34:42,191 INFO retrieval.train: epoch=5 step=7100 loss=0.5787 tau=0.0428 lr=2.68e-05 elapsed=1295s
+2026-09-19 02:36:38,152 INFO retrieval.train: epoch=5 step=7200 loss=0.5794 tau=0.0426 lr=2.67e-05 elapsed=1411s
+2026-09-19 02:38:35,957 INFO retrieval.train: epoch=5 step=7300 loss=0.5800 tau=0.0423 lr=2.65e-05 elapsed=1528s
+2026-09-19 02:39:06,978 INFO __main__: Epoch 5 done — avg_loss=0.5799, best_val_R@100_i2t=0.8093
+2026-09-19 02:39:16,578 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-09-19 02:39:16,799 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 02:39:16,812 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-09-19 02:39:17,034 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 02:39:17,046 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/config.json "HTTP/1.1 200 OK"
+2026-09-19 02:39:17,268 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 02:39:17,280 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-09-19 02:39:17,500 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-09-19 02:39:17,726 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-09-19 02:40:49,578 INFO retrieval.train: epoch=6 step=7400 loss=0.4461 tau=0.0420 lr=2.64e-05 elapsed=92s
+2026-09-19 02:42:46,516 INFO retrieval.train: epoch=6 step=7500 loss=0.4484 tau=0.0417 lr=2.63e-05 elapsed=208s
+2026-09-19 02:44:44,397 INFO retrieval.train: epoch=6 step=7600 loss=0.4504 tau=0.0414 lr=2.61e-05 elapsed=326s
+2026-09-19 02:46:41,180 INFO retrieval.train: epoch=6 step=7700 loss=0.4506 tau=0.0411 lr=2.60e-05 elapsed=443s
+2026-09-19 02:48:39,021 INFO retrieval.train: epoch=6 step=7800 loss=0.4520 tau=0.0408 lr=2.58e-05 elapsed=561s
+2026-09-19 02:50:35,674 INFO retrieval.train: epoch=6 step=7900 loss=0.4519 tau=0.0405 lr=2.57e-05 elapsed=678s
+2026-09-19 02:52:34,065 INFO retrieval.train: epoch=6 step=8000 loss=0.4509 tau=0.0402 lr=2.55e-05 elapsed=796s
+2026-09-19 02:54:44,357 INFO retrieval.train: New best val RSUM = 0.8253 → saved best.pt
+2026-09-19 02:56:40,953 INFO retrieval.train: epoch=6 step=8100 loss=0.4509 tau=0.0400 lr=2.54e-05 elapsed=1043s
+2026-09-19 02:58:38,990 INFO retrieval.train: epoch=6 step=8200 loss=0.4516 tau=0.0397 lr=2.52e-05 elapsed=1161s
+2026-09-19 03:00:35,681 INFO retrieval.train: epoch=6 step=8300 loss=0.4514 tau=0.0395 lr=2.50e-05 elapsed=1278s
+2026-09-19 03:02:33,573 INFO retrieval.train: epoch=6 step=8400 loss=0.4515 tau=0.0393 lr=2.49e-05 elapsed=1395s
+2026-09-19 03:04:30,392 INFO retrieval.train: epoch=6 step=8500 loss=0.4513 tau=0.0391 lr=2.47e-05 elapsed=1512s
+2026-09-19 03:05:26,379 INFO __main__: Epoch 6 done — avg_loss=0.4515, best_val_R@100_i2t=0.8253
+2026-09-19 03:05:36,275 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-09-19 03:05:36,498 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 03:05:36,512 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-09-19 03:05:36,743 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 03:05:36,757 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/config.json "HTTP/1.1 200 OK"
+2026-09-19 03:05:36,984 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 03:05:36,997 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-09-19 03:05:37,227 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-09-19 03:05:37,472 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-09-19 03:06:44,309 INFO retrieval.train: epoch=7 step=8600 loss=0.3530 tau=0.0388 lr=2.46e-05 elapsed=66s
+2026-09-19 03:08:41,871 INFO retrieval.train: epoch=7 step=8700 loss=0.3505 tau=0.0385 lr=2.44e-05 elapsed=184s
+2026-09-19 03:10:39,968 INFO retrieval.train: epoch=7 step=8800 loss=0.3521 tau=0.0382 lr=2.42e-05 elapsed=302s
+2026-09-19 03:12:36,839 INFO retrieval.train: epoch=7 step=8900 loss=0.3532 tau=0.0380 lr=2.41e-05 elapsed=419s
+2026-09-19 03:14:35,083 INFO retrieval.train: epoch=7 step=9000 loss=0.3535 tau=0.0377 lr=2.39e-05 elapsed=537s
+2026-09-19 03:18:39,683 INFO retrieval.train: epoch=7 step=9100 loss=0.3542 tau=0.0375 lr=2.37e-05 elapsed=782s
+2026-09-19 03:20:37,665 INFO retrieval.train: epoch=7 step=9200 loss=0.3557 tau=0.0373 lr=2.35e-05 elapsed=900s
+2026-09-19 03:22:34,376 INFO retrieval.train: epoch=7 step=9300 loss=0.3562 tau=0.0371 lr=2.34e-05 elapsed=1017s
+2026-09-19 03:24:32,265 INFO retrieval.train: epoch=7 step=9400 loss=0.3555 tau=0.0368 lr=2.32e-05 elapsed=1134s
+2026-09-19 03:26:29,130 INFO retrieval.train: epoch=7 step=9500 loss=0.3553 tau=0.0366 lr=2.30e-05 elapsed=1251s
+2026-09-19 03:28:26,953 INFO retrieval.train: epoch=7 step=9600 loss=0.3555 tau=0.0364 lr=2.28e-05 elapsed=1369s
+2026-09-19 03:30:23,541 INFO retrieval.train: epoch=7 step=9700 loss=0.3552 tau=0.0362 lr=2.26e-05 elapsed=1486s
+2026-09-19 03:31:44,553 INFO __main__: Epoch 7 done — avg_loss=0.3553, best_val_R@100_i2t=0.8253
+2026-09-19 03:31:53,748 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-09-19 03:31:53,975 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 03:31:53,990 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-09-19 03:31:54,217 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 03:31:54,231 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/config.json "HTTP/1.1 200 OK"
+2026-09-19 03:31:54,454 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 03:31:54,468 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-09-19 03:31:54,692 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-09-19 03:31:54,930 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-09-19 03:32:36,652 INFO retrieval.train: epoch=8 step=9800 loss=0.2834 tau=0.0360 lr=2.24e-05 elapsed=41s
+2026-09-19 03:34:34,780 INFO retrieval.train: epoch=8 step=9900 loss=0.2833 tau=0.0358 lr=2.23e-05 elapsed=160s
+2026-09-19 03:36:31,289 INFO retrieval.train: epoch=8 step=10000 loss=0.2814 tau=0.0356 lr=2.21e-05 elapsed=276s
+2026-09-19 03:38:50,387 INFO retrieval.train: New best val RSUM = 0.8305 → saved best.pt
+2026-09-19 03:40:46,948 INFO retrieval.train: epoch=8 step=10100 loss=0.2845 tau=0.0354 lr=2.19e-05 elapsed=532s
+2026-09-19 03:42:45,212 INFO retrieval.train: epoch=8 step=10200 loss=0.2859 tau=0.0352 lr=2.17e-05 elapsed=650s
+2026-09-19 03:44:41,876 INFO retrieval.train: epoch=8 step=10300 loss=0.2870 tau=0.0350 lr=2.15e-05 elapsed=767s
+2026-09-19 03:46:39,755 INFO retrieval.train: epoch=8 step=10400 loss=0.2872 tau=0.0348 lr=2.13e-05 elapsed=884s
+2026-09-19 03:48:36,458 INFO retrieval.train: epoch=8 step=10500 loss=0.2867 tau=0.0346 lr=2.11e-05 elapsed=1001s
+2026-09-19 03:50:34,381 INFO retrieval.train: epoch=8 step=10600 loss=0.2870 tau=0.0344 lr=2.09e-05 elapsed=1119s
+2026-09-19 03:52:31,102 INFO retrieval.train: epoch=8 step=10700 loss=0.2870 tau=0.0342 lr=2.07e-05 elapsed=1236s
+2026-09-19 03:54:29,180 INFO retrieval.train: epoch=8 step=10800 loss=0.2869 tau=0.0340 lr=2.05e-05 elapsed=1354s
+2026-09-19 03:56:25,761 INFO retrieval.train: epoch=8 step=10900 loss=0.2873 tau=0.0339 lr=2.03e-05 elapsed=1470s
+2026-09-19 03:58:10,467 INFO __main__: Epoch 8 done — avg_loss=0.2877, best_val_R@100_i2t=0.8305
+2026-09-19 03:58:20,975 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-09-19 03:58:21,201 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 03:58:21,213 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-09-19 03:58:21,439 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 03:58:21,452 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/config.json "HTTP/1.1 200 OK"
+2026-09-19 03:58:21,685 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 03:58:21,697 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-09-19 03:58:21,923 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-09-19 03:58:22,182 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-09-19 03:58:38,428 INFO retrieval.train: epoch=9 step=11000 loss=0.2382 tau=0.0337 lr=2.01e-05 elapsed=16s
+2026-09-19 04:02:39,290 INFO retrieval.train: epoch=9 step=11100 loss=0.2365 tau=0.0335 lr=1.99e-05 elapsed=257s
+2026-09-19 04:04:37,373 INFO retrieval.train: epoch=9 step=11200 loss=0.2371 tau=0.0333 lr=1.97e-05 elapsed=375s
+2026-09-19 04:06:34,412 INFO retrieval.train: epoch=9 step=11300 loss=0.2364 tau=0.0331 lr=1.95e-05 elapsed=492s
+2026-09-19 04:08:32,681 INFO retrieval.train: epoch=9 step=11400 loss=0.2361 tau=0.0330 lr=1.93e-05 elapsed=610s
+2026-09-19 04:10:29,375 INFO retrieval.train: epoch=9 step=11500 loss=0.2367 tau=0.0328 lr=1.91e-05 elapsed=727s
+2026-09-19 04:12:27,438 INFO retrieval.train: epoch=9 step=11600 loss=0.2367 tau=0.0327 lr=1.89e-05 elapsed=845s
+2026-09-19 04:14:24,099 INFO retrieval.train: epoch=9 step=11700 loss=0.2373 tau=0.0325 lr=1.87e-05 elapsed=962s
+2026-09-19 04:16:21,987 INFO retrieval.train: epoch=9 step=11800 loss=0.2378 tau=0.0324 lr=1.85e-05 elapsed=1079s
+2026-09-19 04:18:18,515 INFO retrieval.train: epoch=9 step=11900 loss=0.2384 tau=0.0322 lr=1.83e-05 elapsed=1196s
+2026-09-19 04:20:16,642 INFO retrieval.train: epoch=9 step=12000 loss=0.2387 tau=0.0321 lr=1.81e-05 elapsed=1314s
+2026-09-19 04:24:25,557 INFO retrieval.train: epoch=9 step=12100 loss=0.2385 tau=0.0319 lr=1.78e-05 elapsed=1563s
+2026-09-19 04:26:23,461 INFO retrieval.train: epoch=9 step=12200 loss=0.2389 tau=0.0318 lr=1.76e-05 elapsed=1681s
+2026-09-19 04:26:35,228 INFO __main__: Epoch 9 done — avg_loss=0.2389, best_val_R@100_i2t=0.8305
+2026-09-19 04:26:44,858 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-09-19 04:26:45,086 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 04:26:45,101 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-09-19 04:26:46,545 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 04:26:46,560 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/config.json "HTTP/1.1 200 OK"
+2026-09-19 04:26:46,797 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 04:26:46,813 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-09-19 04:26:47,054 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-09-19 04:26:47,311 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-09-19 04:28:36,863 INFO retrieval.train: epoch=10 step=12300 loss=0.2033 tau=0.0316 lr=1.74e-05 elapsed=109s
+2026-09-19 04:30:33,821 INFO retrieval.train: epoch=10 step=12400 loss=0.2031 tau=0.0315 lr=1.72e-05 elapsed=226s
+2026-09-19 04:32:32,276 INFO retrieval.train: epoch=10 step=12500 loss=0.2043 tau=0.0313 lr=1.70e-05 elapsed=345s
+2026-09-19 04:34:29,223 INFO retrieval.train: epoch=10 step=12600 loss=0.2035 tau=0.0312 lr=1.68e-05 elapsed=462s
+2026-09-19 04:36:27,495 INFO retrieval.train: epoch=10 step=12700 loss=0.2046 tau=0.0311 lr=1.66e-05 elapsed=580s
+2026-09-19 04:38:24,373 INFO retrieval.train: epoch=10 step=12800 loss=0.2042 tau=0.0309 lr=1.64e-05 elapsed=697s
+2026-09-19 04:40:22,685 INFO retrieval.train: epoch=10 step=12900 loss=0.2044 tau=0.0308 lr=1.61e-05 elapsed=815s
+2026-09-19 04:42:19,691 INFO retrieval.train: epoch=10 step=13000 loss=0.2048 tau=0.0307 lr=1.59e-05 elapsed=932s
+2026-09-19 04:46:15,919 INFO retrieval.train: epoch=10 step=13100 loss=0.2041 tau=0.0305 lr=1.57e-05 elapsed=1168s
+2026-09-19 04:48:13,760 INFO retrieval.train: epoch=10 step=13200 loss=0.2040 tau=0.0304 lr=1.55e-05 elapsed=1286s
+2026-09-19 04:50:10,840 INFO retrieval.train: epoch=10 step=13300 loss=0.2038 tau=0.0303 lr=1.53e-05 elapsed=1403s
+2026-09-19 04:52:08,774 INFO retrieval.train: epoch=10 step=13400 loss=0.2032 tau=0.0302 lr=1.51e-05 elapsed=1521s
+2026-09-19 04:52:45,525 INFO __main__: Epoch 10 done — avg_loss=0.2033, best_val_R@100_i2t=0.8305
+2026-09-19 04:52:54,694 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-09-19 04:52:54,932 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 04:52:54,946 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-09-19 04:52:55,171 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 04:52:55,184 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/config.json "HTTP/1.1 200 OK"
+2026-09-19 04:52:55,413 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 04:52:55,427 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-09-19 04:52:55,655 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-09-19 04:52:56,036 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-09-19 04:54:20,557 INFO retrieval.train: epoch=11 step=13500 loss=0.1752 tau=0.0301 lr=1.49e-05 elapsed=84s
+2026-09-19 04:56:18,961 INFO retrieval.train: epoch=11 step=13600 loss=0.1785 tau=0.0299 lr=1.46e-05 elapsed=203s
+2026-09-19 04:58:16,864 INFO retrieval.train: epoch=11 step=13700 loss=0.1793 tau=0.0298 lr=1.44e-05 elapsed=320s
+2026-09-19 05:00:12,910 INFO retrieval.train: epoch=11 step=13800 loss=0.1789 tau=0.0297 lr=1.42e-05 elapsed=437s
+2026-09-19 05:02:11,472 INFO retrieval.train: epoch=11 step=13900 loss=0.1791 tau=0.0296 lr=1.40e-05 elapsed=555s
+2026-09-19 05:04:08,883 INFO retrieval.train: epoch=11 step=14000 loss=0.1807 tau=0.0295 lr=1.38e-05 elapsed=672s
+2026-09-19 05:06:18,425 INFO retrieval.train: New best val RSUM = 0.8331 → saved best.pt
+2026-09-19 05:08:15,180 INFO retrieval.train: epoch=11 step=14100 loss=0.1809 tau=0.0294 lr=1.36e-05 elapsed=919s
+2026-09-19 05:10:12,650 INFO retrieval.train: epoch=11 step=14200 loss=0.1805 tau=0.0293 lr=1.34e-05 elapsed=1036s
+2026-09-19 05:12:10,109 INFO retrieval.train: epoch=11 step=14300 loss=0.1803 tau=0.0292 lr=1.32e-05 elapsed=1154s
+2026-09-19 05:14:07,212 INFO retrieval.train: epoch=11 step=14400 loss=0.1799 tau=0.0291 lr=1.29e-05 elapsed=1271s
+2026-09-19 05:16:04,803 INFO retrieval.train: epoch=11 step=14500 loss=0.1802 tau=0.0290 lr=1.27e-05 elapsed=1388s
+2026-09-19 05:18:03,189 INFO retrieval.train: epoch=11 step=14600 loss=0.1804 tau=0.0289 lr=1.25e-05 elapsed=1507s
+2026-09-19 05:19:03,898 INFO __main__: Epoch 11 done — avg_loss=0.1803, best_val_R@100_i2t=0.8331
+2026-09-19 05:19:14,937 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-09-19 05:19:15,150 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 05:19:15,163 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-09-19 05:19:15,381 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 05:19:15,393 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/config.json "HTTP/1.1 200 OK"
+2026-09-19 05:19:15,620 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 05:19:15,634 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-09-19 05:19:15,850 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-09-19 05:19:16,087 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-09-19 05:20:16,589 INFO retrieval.train: epoch=12 step=14700 loss=0.1615 tau=0.0288 lr=1.23e-05 elapsed=60s
+2026-09-19 05:22:14,612 INFO retrieval.train: epoch=12 step=14800 loss=0.1632 tau=0.0287 lr=1.21e-05 elapsed=178s
+2026-09-19 05:24:11,518 INFO retrieval.train: epoch=12 step=14900 loss=0.1631 tau=0.0286 lr=1.19e-05 elapsed=295s
+2026-09-19 05:26:09,734 INFO retrieval.train: epoch=12 step=15000 loss=0.1635 tau=0.0285 lr=1.17e-05 elapsed=413s
+2026-09-19 05:30:13,877 INFO retrieval.train: epoch=12 step=15100 loss=0.1635 tau=0.0284 lr=1.15e-05 elapsed=657s
+2026-09-19 05:32:11,401 INFO retrieval.train: epoch=12 step=15200 loss=0.1633 tau=0.0284 lr=1.13e-05 elapsed=775s
+2026-09-19 05:34:08,272 INFO retrieval.train: epoch=12 step=15300 loss=0.1636 tau=0.0283 lr=1.11e-05 elapsed=892s
+2026-09-19 05:36:05,917 INFO retrieval.train: epoch=12 step=15400 loss=0.1639 tau=0.0282 lr=1.08e-05 elapsed=1009s
+2026-09-19 05:38:02,358 INFO retrieval.train: epoch=12 step=15500 loss=0.1640 tau=0.0281 lr=1.06e-05 elapsed=1126s
+2026-09-19 05:40:00,270 INFO retrieval.train: epoch=12 step=15600 loss=0.1634 tau=0.0280 lr=1.04e-05 elapsed=1244s
+2026-09-19 05:41:57,555 INFO retrieval.train: epoch=12 step=15700 loss=0.1635 tau=0.0280 lr=1.02e-05 elapsed=1361s
+2026-09-19 05:43:54,855 INFO retrieval.train: epoch=12 step=15800 loss=0.1637 tau=0.0279 lr=1.00e-05 elapsed=1478s
+2026-09-19 05:45:21,659 INFO __main__: Epoch 12 done — avg_loss=0.1635, best_val_R@100_i2t=0.8331
+2026-09-19 05:45:31,152 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-09-19 05:45:31,378 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 05:45:31,395 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-09-19 05:45:31,661 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 05:45:31,676 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/config.json "HTTP/1.1 200 OK"
+2026-09-19 05:45:31,904 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 05:45:31,919 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-09-19 05:45:32,150 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-09-19 05:45:32,408 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-09-19 05:46:08,513 INFO retrieval.train: epoch=13 step=15900 loss=0.1537 tau=0.0278 lr=9.83e-06 elapsed=36s
+2026-09-19 05:48:05,436 INFO retrieval.train: epoch=13 step=16000 loss=0.1484 tau=0.0277 lr=9.63e-06 elapsed=153s
+2026-09-19 05:50:16,268 INFO retrieval.train: New best val RSUM = 0.8331 → saved best.pt
+2026-09-19 05:52:12,740 INFO retrieval.train: epoch=13 step=16100 loss=0.1505 tau=0.0277 lr=9.43e-06 elapsed=400s
+2026-09-19 05:54:11,140 INFO retrieval.train: epoch=13 step=16200 loss=0.1512 tau=0.0276 lr=9.23e-06 elapsed=518s
+2026-09-19 05:56:09,070 INFO retrieval.train: epoch=13 step=16300 loss=0.1518 tau=0.0275 lr=9.03e-06 elapsed=636s
+2026-09-19 05:58:06,086 INFO retrieval.train: epoch=13 step=16400 loss=0.1523 tau=0.0275 lr=8.84e-06 elapsed=753s
+2026-09-19 06:00:04,052 INFO retrieval.train: epoch=13 step=16500 loss=0.1517 tau=0.0274 lr=8.64e-06 elapsed=871s
+2026-09-19 06:02:01,036 INFO retrieval.train: epoch=13 step=16600 loss=0.1516 tau=0.0273 lr=8.45e-06 elapsed=988s
+2026-09-19 06:03:57,994 INFO retrieval.train: epoch=13 step=16700 loss=0.1516 tau=0.0273 lr=8.26e-06 elapsed=1105s
+2026-09-19 06:05:56,480 INFO retrieval.train: epoch=13 step=16800 loss=0.1515 tau=0.0272 lr=8.07e-06 elapsed=1224s
+2026-09-19 06:07:54,006 INFO retrieval.train: epoch=13 step=16900 loss=0.1514 tau=0.0272 lr=7.88e-06 elapsed=1341s
+2026-09-19 06:09:50,835 INFO retrieval.train: epoch=13 step=17000 loss=0.1515 tau=0.0271 lr=7.69e-06 elapsed=1458s
+2026-09-19 06:13:40,105 INFO __main__: Epoch 13 done — avg_loss=0.1516, best_val_R@100_i2t=0.8331
+2026-09-19 06:13:49,369 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-09-19 06:13:49,594 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 06:13:49,611 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-09-19 06:13:49,838 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 06:13:49,852 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/config.json "HTTP/1.1 200 OK"
+2026-09-19 06:13:50,084 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 06:13:50,101 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-09-19 06:13:50,353 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-09-19 06:13:50,641 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-09-19 06:14:01,802 INFO retrieval.train: epoch=14 step=17100 loss=0.1544 tau=0.0271 lr=7.50e-06 elapsed=11s
+2026-09-19 06:15:59,005 INFO retrieval.train: epoch=14 step=17200 loss=0.1443 tau=0.0270 lr=7.32e-06 elapsed=128s
+2026-09-19 06:17:57,256 INFO retrieval.train: epoch=14 step=17300 loss=0.1410 tau=0.0269 lr=7.13e-06 elapsed=246s
+2026-09-19 06:19:55,104 INFO retrieval.train: epoch=14 step=17400 loss=0.1417 tau=0.0269 lr=6.95e-06 elapsed=364s
+2026-09-19 06:21:51,877 INFO retrieval.train: epoch=14 step=17500 loss=0.1416 tau=0.0268 lr=6.77e-06 elapsed=481s
+2026-09-19 06:23:50,076 INFO retrieval.train: epoch=14 step=17600 loss=0.1430 tau=0.0268 lr=6.59e-06 elapsed=599s
+2026-09-19 06:25:47,846 INFO retrieval.train: epoch=14 step=17700 loss=0.1427 tau=0.0267 lr=6.42e-06 elapsed=717s
+2026-09-19 06:27:44,237 INFO retrieval.train: epoch=14 step=17800 loss=0.1429 tau=0.0267 lr=6.24e-06 elapsed=833s
+2026-09-19 06:29:42,432 INFO retrieval.train: epoch=14 step=17900 loss=0.1428 tau=0.0267 lr=6.07e-06 elapsed=951s
+2026-09-19 06:31:39,053 INFO retrieval.train: epoch=14 step=18000 loss=0.1431 tau=0.0266 lr=5.90e-06 elapsed=1068s
+2026-09-19 06:35:47,214 INFO retrieval.train: epoch=14 step=18100 loss=0.1431 tau=0.0266 lr=5.73e-06 elapsed=1316s
+2026-09-19 06:37:45,718 INFO retrieval.train: epoch=14 step=18200 loss=0.1433 tau=0.0265 lr=5.56e-06 elapsed=1435s
+2026-09-19 06:39:42,637 INFO retrieval.train: epoch=14 step=18300 loss=0.1433 tau=0.0265 lr=5.40e-06 elapsed=1552s
+2026-09-19 06:40:01,285 INFO __main__: Epoch 14 done — avg_loss=0.1432, best_val_R@100_i2t=0.8331
+2026-09-19 06:40:10,343 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-09-19 06:40:10,586 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 06:40:10,603 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-09-19 06:40:10,837 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 06:40:10,854 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/config.json "HTTP/1.1 200 OK"
+2026-09-19 06:40:11,088 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 06:40:11,105 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-09-19 06:40:11,358 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-09-19 06:40:11,607 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-09-19 06:41:55,298 INFO retrieval.train: epoch=15 step=18400 loss=0.1402 tau=0.0265 lr=5.23e-06 elapsed=103s
+2026-09-19 06:43:53,477 INFO retrieval.train: epoch=15 step=18500 loss=0.1394 tau=0.0264 lr=5.07e-06 elapsed=222s
+2026-09-19 06:45:50,239 INFO retrieval.train: epoch=15 step=18600 loss=0.1395 tau=0.0264 lr=4.91e-06 elapsed=338s
+2026-09-19 06:47:48,002 INFO retrieval.train: epoch=15 step=18700 loss=0.1399 tau=0.0263 lr=4.75e-06 elapsed=456s
+2026-09-19 06:49:44,873 INFO retrieval.train: epoch=15 step=18800 loss=0.1395 tau=0.0263 lr=4.60e-06 elapsed=573s
+2026-09-19 06:51:42,897 INFO retrieval.train: epoch=15 step=18900 loss=0.1393 tau=0.0263 lr=4.44e-06 elapsed=691s
+2026-09-19 06:53:39,380 INFO retrieval.train: epoch=15 step=19000 loss=0.1394 tau=0.0263 lr=4.29e-06 elapsed=807s
+2026-09-19 06:55:48,871 INFO retrieval.train: New best val RSUM = 0.8336 → saved best.pt
+2026-09-19 06:57:46,428 INFO retrieval.train: epoch=15 step=19100 loss=0.1396 tau=0.0262 lr=4.14e-06 elapsed=1054s
+2026-09-19 06:59:43,570 INFO retrieval.train: epoch=15 step=19200 loss=0.1393 tau=0.0262 lr=4.00e-06 elapsed=1172s
+2026-09-19 07:01:41,016 INFO retrieval.train: epoch=15 step=19300 loss=0.1395 tau=0.0262 lr=3.85e-06 elapsed=1289s
+2026-09-19 07:03:39,347 INFO retrieval.train: epoch=15 step=19400 loss=0.1397 tau=0.0261 lr=3.71e-06 elapsed=1407s
+2026-09-19 07:05:36,897 INFO retrieval.train: epoch=15 step=19500 loss=0.1395 tau=0.0261 lr=3.57e-06 elapsed=1525s
+2026-09-19 07:06:19,515 INFO __main__: Epoch 15 done — avg_loss=0.1394, best_val_R@100_i2t=0.8336
+2026-09-19 07:06:28,756 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-09-19 07:06:29,002 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 07:06:29,021 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-09-19 07:06:29,256 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 07:06:29,271 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/config.json "HTTP/1.1 200 OK"
+2026-09-19 07:06:29,524 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 07:06:29,540 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-09-19 07:06:29,777 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-09-19 07:06:30,305 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-09-19 07:07:53,984 INFO retrieval.train: epoch=16 step=19600 loss=0.1410 tau=0.0261 lr=3.43e-06 elapsed=83s
+2026-09-19 07:09:55,220 INFO retrieval.train: epoch=16 step=19700 loss=0.1371 tau=0.0261 lr=3.30e-06 elapsed=205s
+2026-09-19 07:11:59,204 INFO retrieval.train: epoch=16 step=19800 loss=0.1376 tau=0.0260 lr=3.16e-06 elapsed=329s
+2026-09-19 07:14:01,353 INFO retrieval.train: epoch=16 step=19900 loss=0.1370 tau=0.0260 lr=3.03e-06 elapsed=451s
+2026-09-19 07:16:04,607 INFO retrieval.train: epoch=16 step=20000 loss=0.1371 tau=0.0260 lr=2.91e-06 elapsed=574s
+2026-09-19 07:20:40,029 INFO retrieval.train: epoch=16 step=20100 loss=0.1372 tau=0.0260 lr=2.78e-06 elapsed=849s
+2026-09-19 07:22:41,777 INFO retrieval.train: epoch=16 step=20200 loss=0.1366 tau=0.0260 lr=2.66e-06 elapsed=971s
+2026-09-19 07:24:45,093 INFO retrieval.train: epoch=16 step=20300 loss=0.1371 tau=0.0259 lr=2.54e-06 elapsed=1094s
+2026-09-19 07:26:48,685 INFO retrieval.train: epoch=16 step=20400 loss=0.1368 tau=0.0259 lr=2.42e-06 elapsed=1218s
+2026-09-19 07:28:50,508 INFO retrieval.train: epoch=16 step=20500 loss=0.1367 tau=0.0259 lr=2.30e-06 elapsed=1340s
+2026-09-19 07:30:54,304 INFO retrieval.train: epoch=16 step=20600 loss=0.1365 tau=0.0259 lr=2.19e-06 elapsed=1464s
+2026-09-19 07:32:56,348 INFO retrieval.train: epoch=16 step=20700 loss=0.1364 tau=0.0259 lr=2.08e-06 elapsed=1586s
+2026-09-19 07:34:06,815 INFO __main__: Epoch 16 done — avg_loss=0.1362, best_val_R@100_i2t=0.8336
+2026-09-19 07:34:17,696 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-09-19 07:34:17,911 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 07:34:17,925 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-09-19 07:34:18,157 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 07:34:18,173 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/config.json "HTTP/1.1 200 OK"
+2026-09-19 07:34:18,408 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 07:34:18,421 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-09-19 07:34:18,640 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-09-19 07:34:18,867 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-09-19 07:35:15,302 INFO retrieval.train: epoch=17 step=20800 loss=0.1329 tau=0.0259 lr=1.97e-06 elapsed=56s
+2026-09-19 07:37:18,982 INFO retrieval.train: epoch=17 step=20900 loss=0.1350 tau=0.0259 lr=1.87e-06 elapsed=180s
+2026-09-19 07:39:23,456 INFO retrieval.train: epoch=17 step=21000 loss=0.1323 tau=0.0258 lr=1.77e-06 elapsed=304s
+2026-09-19 07:43:33,760 INFO retrieval.train: epoch=17 step=21100 loss=0.1319 tau=0.0258 lr=1.67e-06 elapsed=555s
+2026-09-19 07:45:33,674 INFO retrieval.train: epoch=17 step=21200 loss=0.1314 tau=0.0258 lr=1.57e-06 elapsed=674s
+2026-09-19 07:47:32,873 INFO retrieval.train: epoch=17 step=21300 loss=0.1313 tau=0.0258 lr=1.48e-06 elapsed=794s
+2026-09-19 07:49:31,964 INFO retrieval.train: epoch=17 step=21400 loss=0.1315 tau=0.0258 lr=1.38e-06 elapsed=913s
+2026-09-19 07:51:29,936 INFO retrieval.train: epoch=17 step=21500 loss=0.1317 tau=0.0258 lr=1.30e-06 elapsed=1031s
+2026-09-19 07:53:28,629 INFO retrieval.train: epoch=17 step=21600 loss=0.1316 tau=0.0258 lr=1.21e-06 elapsed=1149s
+2026-09-19 07:55:26,988 INFO retrieval.train: epoch=17 step=21700 loss=0.1318 tau=0.0258 lr=1.13e-06 elapsed=1268s
+2026-09-19 07:57:24,436 INFO retrieval.train: epoch=17 step=21800 loss=0.1323 tau=0.0258 lr=1.05e-06 elapsed=1385s
+2026-09-19 07:59:21,768 INFO retrieval.train: epoch=17 step=21900 loss=0.1325 tau=0.0258 lr=9.69e-07 elapsed=1503s
+2026-09-19 08:00:53,904 INFO __main__: Epoch 17 done — avg_loss=0.1325, best_val_R@100_i2t=0.8336
+2026-09-19 08:01:03,131 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-09-19 08:01:03,362 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 08:01:03,374 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-09-19 08:01:03,602 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 08:01:03,615 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/config.json "HTTP/1.1 200 OK"
+2026-09-19 08:01:03,842 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 08:01:03,854 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-09-19 08:01:04,085 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-09-19 08:01:04,317 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-09-19 08:01:34,122 INFO retrieval.train: epoch=18 step=22000 loss=0.1325 tau=0.0257 lr=8.95e-07 elapsed=29s
+2026-09-19 08:03:43,427 INFO retrieval.train: New best val RSUM = 0.8345 → saved best.pt
+2026-09-19 08:05:40,593 INFO retrieval.train: epoch=18 step=22100 loss=0.1357 tau=0.0257 lr=8.24e-07 elapsed=276s
+2026-09-19 08:07:39,383 INFO retrieval.train: epoch=18 step=22200 loss=0.1352 tau=0.0257 lr=7.55e-07 elapsed=395s
+2026-09-19 08:09:36,888 INFO retrieval.train: epoch=18 step=22300 loss=0.1347 tau=0.0257 lr=6.89e-07 elapsed=512s
+2026-09-19 08:11:35,187 INFO retrieval.train: epoch=18 step=22400 loss=0.1356 tau=0.0257 lr=6.27e-07 elapsed=630s
+2026-09-19 08:13:32,213 INFO retrieval.train: epoch=18 step=22500 loss=0.1362 tau=0.0257 lr=5.67e-07 elapsed=748s
+2026-09-19 08:15:31,459 INFO retrieval.train: epoch=18 step=22600 loss=0.1360 tau=0.0257 lr=5.10e-07 elapsed=867s
+2026-09-19 08:17:28,121 INFO retrieval.train: epoch=18 step=22700 loss=0.1350 tau=0.0257 lr=4.56e-07 elapsed=983s
+2026-09-19 08:19:26,068 INFO retrieval.train: epoch=18 step=22800 loss=0.1338 tau=0.0257 lr=4.05e-07 elapsed=1101s
+2026-09-19 08:21:23,666 INFO retrieval.train: epoch=18 step=22900 loss=0.1338 tau=0.0257 lr=3.57e-07 elapsed=1219s
+2026-09-19 08:23:21,715 INFO retrieval.train: epoch=18 step=23000 loss=0.1341 tau=0.0257 lr=3.12e-07 elapsed=1337s
+2026-09-19 08:27:17,011 INFO retrieval.train: epoch=18 step=23100 loss=0.1340 tau=0.0257 lr=2.70e-07 elapsed=1572s
+2026-09-19 08:29:13,102 INFO __main__: Epoch 18 done — avg_loss=0.1337, best_val_R@100_i2t=0.8345
+2026-09-19 08:29:22,191 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+2026-09-19 08:29:22,421 INFO httpx: HTTP Request: HEAD https://huggingface.co/openai/clip-vit-base-patch32/resolve/main/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 08:29:22,437 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/openai/clip-vit-base-patch32/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json "HTTP/1.1 200 OK"
+2026-09-19 08:29:22,681 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 08:29:22,696 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/config.json "HTTP/1.1 200 OK"
+2026-09-19 08:29:22,927 INFO httpx: HTTP Request: HEAD https://huggingface.co/m3rg-iitd/matscibert/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-09-19 08:29:22,943 INFO httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/m3rg-iitd/matscibert/ced9d8f5f208712c4a90f98a246fe32155b29995/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-09-19 08:29:23,176 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-09-19 08:29:23,489 INFO httpx: HTTP Request: GET https://huggingface.co/api/models/m3rg-iitd/matscibert/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-09-19 08:29:29,516 INFO retrieval.train: epoch=19 step=23200 loss=0.1373 tau=0.0257 lr=2.31e-07 elapsed=6s
+2026-09-19 08:31:27,455 INFO retrieval.train: epoch=19 step=23300 loss=0.1354 tau=0.0257 lr=1.95e-07 elapsed=124s
+2026-09-19 08:33:26,324 INFO retrieval.train: epoch=19 step=23400 loss=0.1333 tau=0.0257 lr=1.62e-07 elapsed=242s
+2026-09-19 08:35:24,691 INFO retrieval.train: epoch=19 step=23500 loss=0.1326 tau=0.0257 lr=1.32e-07 elapsed=361s
+2026-09-19 08:37:24,003 INFO retrieval.train: epoch=19 step=23600 loss=0.1318 tau=0.0257 lr=1.05e-07 elapsed=480s
+2026-09-19 08:39:23,669 INFO retrieval.train: epoch=19 step=23700 loss=0.1315 tau=0.0257 lr=8.15e-08 elapsed=600s
+2026-09-19 08:41:22,255 INFO retrieval.train: epoch=19 step=23800 loss=0.1309 tau=0.0257 lr=6.07e-08 elapsed=718s
+2026-09-19 08:43:21,687 INFO retrieval.train: epoch=19 step=23900 loss=0.1313 tau=0.0257 lr=4.30e-08 elapsed=838s
+2026-09-19 08:45:20,146 INFO retrieval.train: epoch=19 step=24000 loss=0.1313 tau=0.0257 lr=2.83e-08 elapsed=956s
+2026-09-19 08:49:26,809 INFO retrieval.train: epoch=19 step=24100 loss=0.1316 tau=0.0257 lr=1.67e-08 elapsed=1203s
+2026-09-19 08:51:24,381 INFO retrieval.train: epoch=19 step=24200 loss=0.1316 tau=0.0257 lr=8.10e-09 elapsed=1321s
+2026-09-19 08:53:22,716 INFO retrieval.train: epoch=19 step=24300 loss=0.1314 tau=0.0257 lr=2.59e-09 elapsed=1439s
+2026-09-19 08:55:20,929 INFO retrieval.train: epoch=19 step=24400 loss=0.1314 tau=0.0257 lr=1.38e-10 elapsed=1557s
+2026-09-19 08:55:45,181 INFO __main__: Epoch 19 done — avg_loss=0.1315, best_val_R@100_i2t=0.8345
+2026-09-19 08:56:02,763 INFO __main__: Loaded best checkpoint for test evaluation
+2026-09-19 08:58:40,326 INFO __main__: Done.
