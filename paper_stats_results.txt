@@ -30,6 +30,30 @@ Join mechanism:
 
 
 ============================================================
+1b. MASTER IMAGES (pre-join, from crop directories)
+============================================================
+
+Domain         Scanned  MasterImgs
+------------------------------------
+alloy           41,682      14,795
+ceramics       193,379      69,203
+composite       11,766       4,469
+ni_alloy        81,381      29,232
+steel           46,004      20,219
+additive        86,691      34,981
+------------------------------------
+TOTAL          460,903     172,899
+
+Note:
+  A master image is the pre-panel-split parent figure, recovered by
+  stripping the crop filename's panel-letter/"single" suffix
+  (e.g. imgXXXX_A.jpg, imgXXXX_B.jpg -> master imgXXXX).
+  Stray duplicate files containing "copy" in the filename (leftover
+  OS-level file copies, not part of the original detection scan) are
+  excluded.
+
+
+============================================================
 2. TAXONOMY VALIDITY (category/subtype pairing)
 ============================================================
 

@@ -3,9 +3,10 @@
 paper_stats.py — produces all dataset statistics needed for the paper.
 
 Covers:
-  1. Detection→annotation join evaluation  (from build_dataset logs)
-  2. Taxonomy validity (category/subtype pairing) (from dataset_index.json)
-  3. Inter-annotator agreement             (from cohen_kappa_log.txt)
+  1.  Detection→annotation join evaluation  (from build_dataset logs)
+  1b. Master images behind the raw detected panels (from crop directories)
+  2.  Taxonomy validity (category/subtype pairing) (from dataset_index.json)
+  3.  Inter-annotator agreement             (from cohen_kappa_log.txt)
 
 Run from the cmpfig root:
     python paper_stats.py
@@ -42,6 +43,15 @@ LOG_FILES = {
 DATASET_INDEX = ROOT / "Visulization" / "dataset_index.json"
 KAPPA_LOG     = ROOT / "Visulization" / "kappa" / "cohen_kappa_log.txt"
 TAXONOMY_SOURCE = ROOT / "caption_benchmarking" / "gen_subcaption_azure.py"
+
+CROP_DIRS = {
+    "alloy":     ROOT / "main_data" / "alloy_prod_crops",
+    "ceramics":  ROOT / "main_data" / "ceramics_prod_crops",
+    "composite": ROOT / "main_data" / "composite_prod_crops",
+    "ni_alloy":  ROOT / "main_data" / "ni_prod_crops",
+    "steel":     ROOT / "main_data" / "steel_prod_crops",
+    "additive":  ROOT / "main_data" / "additive_elsevier_crops",
+}
 
 
 def sep(title=""):
@@ -107,6 +117,49 @@ Join mechanism:
   matched case-insensitively to LLM JSON panel key.
   Single-panel figures use key "main".
   Fallback: none — unmatched panels are excluded from the dataset.
+""")
+
+
+# ── 1b. Master images behind the raw detected panels ───────────────────────────
+sep("1b. MASTER IMAGES (pre-join, from crop directories)")
+
+PANEL_SUFFIX = re.compile(r"^(.*)_(single|[A-Za-z]{1,3})\.(jpg|jpeg|png)$", re.IGNORECASE)
+
+def count_master_images(crop_dir):
+    if not crop_dir.exists():
+        return None
+    files = [f for f in os.listdir(crop_dir)
+              if f.lower().endswith((".jpg", ".jpeg", ".png")) and "copy" not in f.lower()]
+    masters = set()
+    for f in files:
+        m = PANEL_SUFFIX.match(f)
+        masters.add(m.group(1) if m else os.path.splitext(f)[0])
+    return len(files), len(masters)
+
+print(f"\n{'Domain':<12} {'Scanned':>9} {'MasterImgs':>11}")
+print("-" * 36)
+master_totals = {"scanned": 0, "masters": 0}
+for domain, crop_dir in CROP_DIRS.items():
+    result = count_master_images(crop_dir)
+    if result is None:
+        print(f"  [skip] {crop_dir} not found")
+        continue
+    files_n, masters_n = result
+    print(f"{domain:<12} {files_n:>9,} {masters_n:>11,}")
+    master_totals["scanned"] += files_n
+    master_totals["masters"] += masters_n
+
+print("-" * 36)
+print(f"{'TOTAL':<12} {master_totals['scanned']:>9,} {master_totals['masters']:>11,}")
+
+print(f"""
+Note:
+  A master image is the pre-panel-split parent figure, recovered by
+  stripping the crop filename's panel-letter/"single" suffix
+  (e.g. imgXXXX_A.jpg, imgXXXX_B.jpg -> master imgXXXX).
+  Stray duplicate files containing "copy" in the filename (leftover
+  OS-level file copies, not part of the original detection scan) are
+  excluded.
 """)
 
 

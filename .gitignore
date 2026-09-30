@@ -28,6 +28,8 @@ dataset_index_pre_dedup.json.bak
 merged_duplicates.csv
 additive_elsevier_dataset.csv
 steel_prod_dataset.csv
+main_data/matscifig_doi.csv
+main_data/matscifig_panels.csv
 
 # ── Large main_data subdirectories ───────────────────────────────────────────
 Experiment/
