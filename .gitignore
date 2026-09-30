@@ -21,6 +21,7 @@ ModelBench/yolo*.pt
 *_linked_dataset.csv
 linked_dataset.csv
 dataset_index.json
+dataset_index_01.json
 */_summary.json
 generated_subcaptions_*.zip
 balanced_subset.csv
